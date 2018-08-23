@@ -65,10 +65,15 @@ exports.seed = function(knex, Promise) {
       ]).returning('*');
   }
 
+  // randomization of which customer to access for seeding
   function randomCustomer(){
     return Math.floor(Math.random() * 3);
   }
 
+  // Takes in an integer(defaults to zero) and subtracts that from the current time
+  // To simulate multiple orders at different time
+  // returns a string format of time
+  // Note: in UTC; give or take a few minutes
   function getAlteredTime(x = 0){
     let rightNow = new Date().getTime();
     rightNow -= 1000 * 60 * x;
@@ -77,14 +82,14 @@ exports.seed = function(knex, Promise) {
   };
 
   function insertOrders(customers){
+    // simulating different order times
     const orderTime1 = getAlteredTime(20);
     const orderTime2 = getAlteredTime(15);
     const orderTime3 = getAlteredTime(11);
     const orderTime4 = getAlteredTime(9);
     const orderTime5 = getAlteredTime();
 
-
-
+    // simulating different customers within the table
     const customer1 = randomCustomer();
     const customer2 = randomCustomer();
     const customer3 = randomCustomer();
@@ -92,11 +97,20 @@ exports.seed = function(knex, Promise) {
     const customer5 = randomCustomer();
 
     return knex('orders').insert([
-      { customer_id: customers[customer1].id, created_at: orderTime1},
-      { customer_id: customers[customer2].id, created_at: orderTime2},
-      { customer_id: customers[customer3].id, created_at: orderTime3},
-      { customer_id: customers[customer4].id, created_at: orderTime4},
-      { customer_id: customers[customer5].id, created_at: orderTime5}
+      { customer_id: customers[customer1].id,
+        created_at: orderTime1, estimated_time: 33},
+
+      { customer_id: customers[customer2].id,
+        created_at: orderTime2, estimated_time: 12},
+
+      { customer_id: customers[customer3].id,
+        created_at: orderTime3, estimated_time: 28},
+
+      { customer_id: customers[customer4].id,
+        created_at: orderTime4, estimated_time: 24},
+
+      { customer_id: customers[customer5].id,
+        created_at: orderTime5, estimated_time: 26}
       ]);
 
   }

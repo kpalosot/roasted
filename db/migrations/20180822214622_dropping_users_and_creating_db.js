@@ -20,6 +20,8 @@ exports.up = function(knex, Promise) {
           table.integer('customer_id');
           table.foreign('customer_id').references('customers.id');
           table.time('created_at').defaultTo(knex.fn.now());
+          // in minutes
+          table.integer('estimated_time');
         })
     });
 };
