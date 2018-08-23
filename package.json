@@ -8,7 +8,8 @@
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon --ignore public/",
     "knex": "./node_modules/.bin/knex",
-    "dev": "nodemon -L server.js"
+    "dev": "nodemon -L server.js",
+    "compile:sass": "node-sass styles/layout.scss public/styles/layout.css -w"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "pg": "^6.0.2"
   },
   "devDependencies": {
+    "node-sass": "^4.9.3",
     "nodemon": "^1.9.2"
   }
 }

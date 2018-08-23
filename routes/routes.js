@@ -6,13 +6,13 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
+    // knex
+    //   .select("*")
+    //   .from("users")
+    //   .then((results) => {
+    //     res.json(results);
+    res.render('index');
     });
-  });
 
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
@@ -38,4 +38,4 @@ module.exports = (knex) => {
   });
 
   return router;
-}
+};
