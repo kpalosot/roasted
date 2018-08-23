@@ -7,6 +7,7 @@ const router  = express.Router();
 const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH;
 const twilioNumber = `+1${process.env.TWILIO_NUMBER}`;
+const ownerNumber = `+1${process.env.MY_NUMBER}`
 const client = require('twilio')(accountSid, authToken);
 
 module.exports = (knex) => {
@@ -27,7 +28,7 @@ module.exports = (knex) => {
 
   router.get("/owner", (req, res) => {
     console.log("SEINDING OWNER PAGE");
-    console.log("I AM OWNER PAGE");
+    res.render("orders");
   });
 
   router.get("/login", (req, res) => {
@@ -36,26 +37,38 @@ module.exports = (knex) => {
   });
 
   router.post("/order", (req, res) => {
-    const customerId = 7;//req.cookie.session.customer_id
+    const customerId = 12; //req.cookie.session.customer_id
 
     // inserting order info to db
     knex('orders').insert({
       customer_id: customerId,
       estimated_time: req.body.estimated_time
-    }).catch(err => console.error("Error on order insertion to orders table:", err));
-
-    knex.select('phone_num')
+    })
+    .returning('id')
+    .then((orderId) => {
+      // getting customer's phone number and name from the database
+      knex.select('phone_num', 'name')
       .from('customers')
       .where('id', customerId)
       .then((customer) => {
+        let customerText = `Your order has been placed with reference ID: ${orderId}`;
+        let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
+        //sending a text message to the customer, then the owner
         client.messages.create({
-          body: req.body.orders,
+          body: customerText,
           from: twilioNumber,
-          to: `+1${customer[0].phone_num}`
-        })
-        .then(res.sendStatus(200));
+          to: customer[0].phone_num
+        });
+        client.messages.create({
+          body: cookText,
+          from: twilioNumber,
+          to: ownerNumber
+        });
       })
-      .catch(err => console.error("Error on sending text to restaurant owner:", err));
+      .catch(err => console.error("Error on notifying customer/owner:", err))
+    })
+    .catch(err => console.error("Error on order insertion to orders table:", err));
+
   });
 
 
