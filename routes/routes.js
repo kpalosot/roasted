@@ -7,7 +7,6 @@ const router  = express.Router();
 const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH;
 const twilioNumber = `+1${process.env.TWILIO_NUMBER}`;
-const myNumber = `+1${process.env.MY_NUMBER}`;
 const client = require('twilio')(accountSid, authToken);
 
 module.exports = (knex) => {
@@ -37,30 +36,28 @@ module.exports = (knex) => {
   });
 
   router.post("/order", (req, res) => {
-    const customerId = 4;//req.cookie.session.customer_id ||
-
-    // getting customer's phone number
-    let customerNum;
-    knex.select('phone_num')
-      .from('customers')
-      .where('id', customerId)
-      .then(customer => customerNum = customer.phone_num)
-      .catch(error => console.error("Error on getting customer's phone number:", error));
+    const customerId = 7;//req.cookie.session.customer_id ||
 
     // inserting order info to db
-
     knex('orders').insert({
       customer_id: customerId,
       estimated_time: req.body.estimated_time
-    }).catch(err => console.error("Error on order insertion to orders table:", err))
-    .then(() => {
-      client.messages.create({
-        body: req.body.orders,
-        from: twilioNumber,
-        to: customerNum
-      });
-    }).catch(err => console.error("Error on sending text to restaurant owner:", err));
+    }).catch(err => console.error("Error on order insertion to orders table:", err));
+
+    knex.select('phone_num')
+      .from('customers')
+      .where('id', customerId)
+      .then((customer) => {
+        client.messages.create({
+          body: req.body.orders,
+          from: twilioNumber,
+          to: `+1${customer[0].phone_num}`
+        })
+        .then(res.sendStatus(200));
+      })
+      .catch(err => console.error("Error on sending text to restaurant owner:", err));
   });
+
 
   router.post("/login", (req, res) =>{
     console.log("posting a login");
