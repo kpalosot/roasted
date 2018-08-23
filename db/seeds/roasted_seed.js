@@ -27,7 +27,7 @@ exports.seed = function(knex, Promise) {
 
       { name: 'Roasted Pork Belly', description:'Roasted Pork Belly with plain rice on the side, partnered with in-house special sauce',
         type: 'Combo', price: 9.70,
-        img_url: 'http://static.wixstatic.com/media/00f21d_03c9edea20044e3798ce42b6554514dc.jpg/v1/fill/w_784,h_523,al_c,q_90,usm_0.66_1.00_0.01/00f21d_03c9edea20044e3798ce42b6554514dc.webp',
+        img_url: 'https://i.imgur.com/hP0ECqn.jpg',
         order_time_estimate: 13},
 
       { name: 'Chili Roasted Sweet Potatoes', description:'Roasted sweet potatoes seasoned with salt, pepper and chili.',
@@ -46,14 +46,14 @@ exports.seed = function(knex, Promise) {
         order_time_estimate: 4},
 
       { name: 'Beer', description:'What else can go well with a roasted meal?',
-      type: 'Drink', price: 2.50 ,
-      img_url: 'https://s3.scoopwhoop.com/anj/beeeeer/904432527.jpg',
-      order_time_estimate: 2},
+        type: 'Drink', price: 2.50 ,
+        img_url: 'https://s3.scoopwhoop.com/anj/beeeeer/904432527.jpg',
+        order_time_estimate: 2},
 
       { name: 'Sangria', description:'If you are feeling fancier than beer.',
-      type: 'Drink', price: 8,
-      img_url: 'https://hips.hearstapps.com/hmg-prod/images/sangria-horizontal-jpg-1522265291.jpg',
-      order_time_estimate: 4}
+        type: 'Drink', price: 8,
+        img_url: 'https://hips.hearstapps.com/hmg-prod/images/sangria-horizontal-jpg-1522265291.jpg',
+        order_time_estimate: 4}
       ]);
   }
 
