@@ -17,7 +17,24 @@ module.exports = (knex) => {
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
     console.log("I AM MENU PAGE");
-    res.render('menu');
+    knex.select('*')
+      .from('menu')
+
+      .then(function (result) {
+        console.log("menu table, ", result);
+        let templateVars = {
+          menu: result
+        };
+        res.render("menu",
+          templateVars
+        );
+      })
+
+      .catch(function (error) {
+        console.error(error)
+      });
+
+
   });
 
   router.get("/owner", (req, res) => {

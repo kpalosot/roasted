@@ -18,61 +18,29 @@
       <h2 class="header-secondary">
         Menu
       </h2>
-      <div class="menu__container">
-        <img class="menu__image" src="https://cmeimg-a.akamaihd.net/640/clsd/getty/14bac0639d5f4588a7496aa49dfbbe55">
-        <div class="menu__detail">
-          <h3 class="header-tertiary">
-            Roasted Pork
-          </h3>
-          <div class="menu__description normal-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet impedit eaque aut mollitia qui minus omnis animi harum itaque
-            error quidem perspiciatis aspernatur aperiam adipisci sed pariatur doloribus, reprehenderit nesciunt.
-          </div>
-          <div class="menu__footer">
-            <div class="menu__price">$499</div>
-            <div class="button button__add">
-              Add
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menu__container">
-        <img class="menu__image" src="https://cmeimg-a.akamaihd.net/640/clsd/getty/14bac0639d5f4588a7496aa49dfbbe55">
-        <div class="menu__detail">
-          <h3 class="header-tertiary">
-            Roasted Pork
-          </h3>
-          <div class="menu__description normal-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet impedit eaque aut mollitia qui minus omnis animi harum itaque
-            error quidem perspiciatis aspernatur aperiam adipisci sed pariatur doloribus, reprehenderit nesciunt.
-          </div>
-          <div class="menu__footer">
-            <div class="menu__price">$499</div>
-            <div class="button button__add">
-              Add
-            </div>
-          </div>
 
-        </div>
-      </div>
-      <div class="menu__container">
-        <img class="menu__image" src="https://cmeimg-a.akamaihd.net/640/clsd/getty/14bac0639d5f4588a7496aa49dfbbe55">
-        <div class="menu__detail">
-          <h3 class="header-tertiary">
-            Roasted Pork
-          </h3>
-          <div class="menu__description normal-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet impedit eaque aut mollitia qui minus omnis animi harum itaque
-            error quidem perspiciatis aspernatur aperiam adipisci sed pariatur doloribus, reprehenderit nesciunt.
-          </div>
-          <div class="menu__footer">
-            <div class="menu__price">$499</div>
-            <div class="button button__add">
-              Add
+      <% for (var id in menu) { %>
+        <div class="menu__container">
+          <img class="menu__image" src="<%= menu[id].img_url %>">
+          <div class="menu__detail">
+            <h3 class="header-tertiary">
+              <%= menu[id].name %>
+            </h3>
+            <div class="menu__description normal-text">
+              <%= menu[id].description %>
+            </div>
+            <div class="menu__footer">
+              <div class="menu__price">
+                $
+                <%= menu[id].price %>
+              </div>
+              <div class="button button__add">
+                Add
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <% }; %>
     </section>
     <section class="section__checkout">
       <div class="checkout__header">
