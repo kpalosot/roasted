@@ -36,7 +36,7 @@ module.exports = (knex) => {
   });
 
   router.post("/order", (req, res) => {
-    const customerId = 7;//req.cookie.session.customer_id ||
+    const customerId = 7;//req.cookie.session.customer_id
 
     // inserting order info to db
     knex('orders').insert({
@@ -60,7 +60,14 @@ module.exports = (knex) => {
 
 
   router.post("/login", (req, res) =>{
-    console.log("posting a login");
+    knex.select('id')
+    .from('customers')
+    .where('name', req.body.username)
+    .then(customer => {
+      req.session.customer_id = customer[0].id;
+    })
+      .then(res.sendStatus(200));
+
   });
 
   return router;

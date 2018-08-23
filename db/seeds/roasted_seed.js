@@ -59,9 +59,9 @@ exports.seed = function(knex, Promise) {
 
   function insertCustomers(){
     return knex('customers').insert([
-      {name: 'Kyla Palos', phone_num: '6476378072'},
-      {name: 'Sean Ye', phone_num: '9055999119'},
-      {name: 'Neenus Gabriel', phone_num: '9052518621'}
+      {name: 'user1@example.com', phone_num: '6476378072'},
+      {name: 'user2@example.com', phone_num: '9055999119'},
+      {name: 'user3@example.com', phone_num: '9052518621'}
       ]).returning('*');
   }
 
