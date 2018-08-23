@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (knex) => {
 
@@ -11,12 +11,13 @@ module.exports = (knex) => {
       .from("users")
       .then((results) => {
         res.json(results);
-    });
+      });
   });
 
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
     console.log("I AM MENU PAGE");
+    res.render('menu');
   });
 
   router.get("/owner", (req, res) => {
@@ -33,7 +34,7 @@ module.exports = (knex) => {
     console.log("posting an order");
   });
 
-  router.post("/login", (req, res) =>{
+  router.post("/login", (req, res) => {
     console.log("posting a login");
   });
 
