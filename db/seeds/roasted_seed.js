@@ -69,29 +69,42 @@ exports.seed = function(knex, Promise) {
     return Math.floor(Math.random() * 3);
   }
 
-  function addMinutes(x){
-    //1000 ms in a sec
-    // 60 sec in a minute
-    return 1000 * 60 * x;
+  function getAlteredTime(x = 0){
+    let rightNow = new Date().getTime();
+    rightNow -= 1000 * 60 * x;
+    rightNow = new Date(rightNow);
+    return rightNow.toISOString().slice(10);
   };
 
-  // function insertOrders(customers){
-  //   const orderTime1 = new Date().getTime() + addMinutes(17);
-  //   const orderTime2 = new Date().getTime() + addMinutes(8);
-  //   const orderTime3 = new Date().getTime();
-
-  //   const customer1 = randomCustomer();
-  //   const customer2 = randomCustomer();
-  //   const customer3 = randomCustomer();
-  //   const customer4 = randomCustomer();
-  //   const customer5 = randomCustomer();
-
-  //   return knex('orders').insert([
-  //     {customer_id: customers[customer1].id, created_at: order_time},
-  //     ]);
-
-  // }
+  function insertOrders(customers){
+    const orderTime1 = getAlteredTime(20);
+    const orderTime2 = getAlteredTime(15);
+    const orderTime3 = getAlteredTime(11);
+    const orderTime4 = getAlteredTime(9);
+    const orderTime5 = getAlteredTime();
 
 
-  return ;
+
+    const customer1 = randomCustomer();
+    const customer2 = randomCustomer();
+    const customer3 = randomCustomer();
+    const customer4 = randomCustomer();
+    const customer5 = randomCustomer();
+
+    return knex('orders').insert([
+      { customer_id: customers[customer1].id, created_at: orderTime1},
+      { customer_id: customers[customer2].id, created_at: orderTime2},
+      { customer_id: customers[customer3].id, created_at: orderTime3},
+      { customer_id: customers[customer4].id, created_at: orderTime4},
+      { customer_id: customers[customer5].id, created_at: orderTime5}
+      ]);
+
+  }
+
+  return deleteMenu()
+  .then(deleteOrders)
+  .then(deleteCustomers)
+  .then(insertMenu)
+  .then(insertCustomers)
+  .then(customers => insertOrders(customers));
 };

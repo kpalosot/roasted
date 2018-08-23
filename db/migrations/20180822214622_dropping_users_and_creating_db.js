@@ -19,7 +19,7 @@ exports.up = function(knex, Promise) {
           table.increments();
           table.integer('customer_id');
           table.foreign('customer_id').references('customers.id');
-          table.timestamp('created_at').defaultTo(knex.fn.now());
+          table.time('created_at').defaultTo(knex.fn.now());
         })
     });
 };
