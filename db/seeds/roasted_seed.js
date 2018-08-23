@@ -1,0 +1,97 @@
+
+exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+  function deleteMenu(){
+    return knex('menu').del();
+  }
+
+  function deleteOrders(){
+    return knex('orders').del();
+  }
+
+  function deleteCustomers(){
+    return knex('customers').del();
+  }
+
+  function insertMenu(){
+    return knex('menu').insert([
+      { name: 'Roasted Corn', description:'Bacon-wrapped roasted corn with butter and sprinkled with ground pepper.',
+        type: 'snack', price: 3.50 ,
+        img_url: 'https://hugsandcookiesxoxo.com/wp-content/uploads/2014/02/bacon-roasted-corn.jpg',
+        order_time_estimate: 6},
+
+      { name: 'Roasted Chicken', description:'Roasted chicken with plain rice on the side, topped with chopped chives',
+        type: 'Combo', price: 8.65,
+        img_url: 'https://img.taste.com.au/TYwgr6nS/taste/2016/11/tikka-masala-roast-chicken-with-spiced-pilau-rice-85312-1.jpeg',
+        order_time_estimate: 11},
+
+      { name: 'Roasted Pork Belly', description:'Roasted Pork Belly with plain rice on the side, partnered with in-house special sauce',
+        type: 'Combo', price: 9.70,
+        img_url: 'http://static.wixstatic.com/media/00f21d_03c9edea20044e3798ce42b6554514dc.jpg/v1/fill/w_784,h_523,al_c,q_90,usm_0.66_1.00_0.01/00f21d_03c9edea20044e3798ce42b6554514dc.webp',
+        order_time_estimate: 13},
+
+      { name: 'Chili Roasted Sweet Potatoes', description:'Roasted sweet potatoes seasoned with salt, pepper and chili.',
+        type: 'Snack', price: 5,
+        img_url: 'https://www.thehungryhutch.com/wp-content/uploads/2018/02/Chili-Roasted-Sweet-Potatoes-Chili-Powder-0.jpg',
+        order_time_estimate: 8},
+
+      { name: 'Roasted Vegetables', description:'A variety of sliced garden vegetables, roasted and mixed with secret seasoning and topped with some basil.',
+        type: 'Combo', price: 4.75,
+        img_url: 'https://musicwithdinner.files.wordpress.com/2015/02/roasted-vegetables-and-rice.jpg',
+        order_time_estimate: 9},
+
+      { name: 'Crab and Sweet Corn Soup', description:'Crab and sweet corn soup with an egg drop, garnished with shredded scalions and bits of chicken.',
+        type: 'Snack', price: 6.25,
+        img_url: 'http://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/food/2014/11/27/WomansDayBR104628/crab-and-sweet-corn-soup.jpg',
+        order_time_estimate: 4},
+
+      { name: 'Beer', description:'What else can go well with a roasted meal?',
+      type: 'Drink', price: 2.50 ,
+      img_url: 'https://s3.scoopwhoop.com/anj/beeeeer/904432527.jpg',
+      order_time_estimate: 2},
+
+      { name: 'Sangria', description:'If you are feeling fancier than beer.',
+      type: 'Drink', price: 8,
+      img_url: 'https://hips.hearstapps.com/hmg-prod/images/sangria-horizontal-jpg-1522265291.jpg',
+      order_time_estimate: 4}
+      ]);
+  }
+
+  function insertCustomers(){
+    return knex('customers').insert([
+      {name: 'Kyla Palos', phone_num: '6473418417'},
+      {name: 'Sean Ye', phone_num: '9055999119'},
+      {name: 'Neenus Gabriel', phone_num: '9052518621'}
+      ]).returning('*');
+  }
+
+  function randomCustomer(){
+    return Math.floor(Math.random() * 3);
+  }
+
+  function addMinutes(x){
+    //1000 ms in a sec
+    // 60 sec in a minute
+    return 1000 * 60 * x;
+  };
+
+  // function insertOrders(customers){
+  //   const orderTime1 = new Date().getTime() + addMinutes(17);
+  //   const orderTime2 = new Date().getTime() + addMinutes(8);
+  //   const orderTime3 = new Date().getTime();
+
+  //   const customer1 = randomCustomer();
+  //   const customer2 = randomCustomer();
+  //   const customer3 = randomCustomer();
+  //   const customer4 = randomCustomer();
+  //   const customer5 = randomCustomer();
+
+  //   return knex('orders').insert([
+  //     {customer_id: customers[customer1].id, created_at: order_time},
+  //     ]);
+
+  // }
+
+
+  return ;
+};
