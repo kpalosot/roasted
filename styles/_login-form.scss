@@ -1,0 +1,39 @@
+.modal {
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    overflow: auto;
+    width: 50%;
+    height: 30em;
+    background-color: #434242;
+    top: 20%;
+    left: 25%;
+    opacity: 0.90;
+    border-radius: 1.5em;
+}
+.show {
+  visibility: visible;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-form {
+  margin: 10px;
+  background: black;
+  color: white;
+  height: 100%;
+  overflow: auto;
+}

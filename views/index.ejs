@@ -9,6 +9,11 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/login.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
   </head>
 
   <body>
@@ -18,9 +23,7 @@
     <main class="container">
       <h1>Welcome to Roasted</h1>
       <!-- <h3>Where everything tastes better!!</h3> -->
-      <button>Login</button>
-      <div id = "loginform">
-      
+      <button id="login-btn">Login</button>
       <button type="button" onclick="location.href='/roasted/menu'">Order</button>
     </main>
 
@@ -48,6 +51,21 @@
         <span>Sunday: Closed</span> -->
       </div>
     </div>
+    <!-- Login form -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+        </div>
+        <div class="login-form">
+          <form action="#">
+            <p>Please login:</p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" autocomplete="off">
+          </form>
+        </div>
+      </div>
+
     <!-- <div class="reviews-section">
         <div class="review">
           <h2 class="review-title">
