@@ -1,15 +1,15 @@
-body{
+/* body {
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   grid-template-rows: 10rem min-content 1fr;
-}
+} */
 
-main{
+main {
   grid-column: 2;
   grid-row: 2;
 }
 
-article.order{
+article.order {
   box-shadow: 10px 10px 8px 5px #888888;
   border-radius: 0.5em;
   width: 18rem;
@@ -19,12 +19,12 @@ article.order{
   grid-template-columns: 0.75rem 1fr 1fr 0.75rem;
 }
 
-article > header{
+article>header {
   grid-column: 2 / span 2;
   grid-row: 2;
 }
 
-div.order-body{
+div.order-body {
   grid-column: 2 / span 2;
   grid-row: 3;
   display: grid;
@@ -32,17 +32,17 @@ div.order-body{
   grid-template-rows: 1fr 1fr;
 }
 
-p.customer-container{
+p.customer-container {
   grid-column: 1 / span 2;
   grid-row: 1;
 }
 
-p.customer-timer{
+p.customer-timer {
   grid-column: 1;
   grid-row: 2;
 }
 
-div.order-body > button{
+div.order-body>button {
   grid-column: 2;
   grid-row: 2;
   border-radius: 0.5em;
