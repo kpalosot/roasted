@@ -8,7 +8,7 @@ $(document).ready(function(){
     $(".modal").removeClass("show");
   });
 
-  $(".modal").blur (function(){
-    $(".modal").removeClass("show");
-  });
+  // $(".modal").blur (function(){
+  //   $(".modal").removeClass("show");
+  // });
 });
