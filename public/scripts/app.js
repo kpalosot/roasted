@@ -98,6 +98,9 @@ $(document).ready(function () {
       })
       .then((response) => {
         console.log("Order placed.");
+        $(".checkout__list").children().remove();
+        $(".checkout__sumDisplay--total").text("$0.00");
+        $(".checkout__estimated-time").text("Estimated Time");
       });
   });
 
