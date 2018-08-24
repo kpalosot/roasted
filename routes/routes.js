@@ -12,16 +12,14 @@ const client = require('twilio')(accountSid, authToken);
 
 module.exports = (knex) => {
 
-
-
-
   /////////////////////////////////////////
   /////////////HELPER FUNCTIONS////////////
   /////////////////////////////////////////
 
   router.get("/", (req, res) => {
+    console.log('I am in get /');
     res.render('index');
-    });
+  });
 
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
