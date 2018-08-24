@@ -1,15 +1,12 @@
-@import "login-form";
-
 html {
   height: 100%;
 }
+
 body {
   background-color: #EEE;
-  height: 100%;
-  // h1 {
+  height: 100%; // h1 {
   //   color: #244751;
   // }
-
 }
 
 .container {
@@ -17,25 +14,12 @@ body {
   height: 100%;
 }
 
-nav {
-  height: 5em;
-  width:  100%;
-  background-color: black;
-  position: fixed;
-  top: 0;
-  padding: 2em;
-  color: white;
-  z-index: 100;
-}
-
 .container {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  background-image:linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), 
-    url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
-  background-position: center;
-  // margin-top: 125px;
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
+  background-position: center; // margin-top: 125px;
   align-items: center;
   grid-column-gap: 30px;
   -webkit-background-size: cover;
@@ -73,49 +57,50 @@ button:hover {
 .banner {
   width: 100%;
   background-color: black;
-  position: relative;
-  // padding: 2em;
+  position: relative; // padding: 2em;
   color: white;
   display: grid;
   grid-template-rows: auto;
   align-items: center;
   justify-items: center;
   height: 5em;
-  }
-  h1 {
-    color: #EEE;
-    position: relative;
-  }
+}
 
-  .location-section {
-    width: 100%;
-    position: relative;
-    color: white;
-    // display: grid;
-    // grid-template-columns: 1fr 1fr;
-    // padding: 2em;
-    // background: #ff5e22;
-    }
+h1 {
+  color: #EEE;
+  position: relative;
+}
 
-    #address {
-      display: grid;
-      justify-content: center;
-      grid-template-rows: repeat(4,min-content);
-      grid-row-gap: 1.5em;
-      color: #000000;
-      z-index: 100;
-      position: absolute;
-      background: #434242;
-      opacity: .75;
-      right: 0;
-      text-align: center;
-      margin: 3em;
-      color: #EEE;
-    }
-    #location-map {
-      position: absolute;
-      width: 100%;
-    }
+.location-section {
+  width: 100%;
+  position: relative;
+  color: white; // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // padding: 2em;
+  // background: #ff5e22;
+}
+
+#address {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(4, min-content);
+  grid-row-gap: 1.5em;
+  color: #000000;
+  z-index: 100;
+  position: absolute;
+  background: #434242;
+  opacity: .75;
+  right: 0;
+  text-align: center;
+  margin: 3em;
+  color: #EEE;
+}
+
+#location-map {
+  position: absolute;
+  width: 100%;
+}
+
 .reviews-section {
   z-index: 1000;
 }
