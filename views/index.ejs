@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Roasted</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/login.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+  </head>
+
+  <body>
+    <nav>
+      <span>this will be a nav to import from header</span>
+    </nav>
+    <main class="container">
+      <h1>Welcome to Roasted</h1>
+      <!-- <h3>Where everything tastes better!!</h3> -->
+      <button id="login-btn">Login</button>
+      <button type="button" onclick="location.href='/roasted/menu'">Order</button>
+    </main>
+
+    <div class="banner">
+      <h1>Our Location</h1>
+    </div>
+    <div class="location-section">
+      <div id="location-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11548.671599433173!2d-79.394998!3d43.644675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d9722eda7b%3A0x4f8d732be5859e7f!2s46+Spadina+Ave%2C+Toronto%2C+ON+M5V+2H8!5e0!3m2!1sen!2sca!4v1535052910185" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>      
+      </div>
+      <div id="address">
+        <h3>Roasted</h3>
+        <span>46 Spadina Avenue</span>
+        <span>Toronto, Ontario</span>
+        <span>(999) 999-999</span>
+        <table>
+            <th colspan="2">Opening Hours:</th>
+            <tr><th>Weekdays:</th><td>9:00am - 9:00pm</td></tr>
+            <tr><th>Saturdays:</th><td>12:00pm - 4:00pm</td></tr>
+            <tr><th>Sundays:</th><td>Closed</td></tr>
+          </table>
+        <!-- <span>Opening Hours:</span>
+        <span>Monday to Friday: 9:00am - 9:00pm</span>
+        <span>Saturday: 12:00pm - 4:00pm</span>
+        <span>Sunday: Closed</span> -->
+      </div>
+    </div>
+    <!-- Login form -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+        </div>
+        <div class="login-form">
+          <form action="#">
+            <p>Please login:</p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" autocomplete="off">
+          </form>
+        </div>
+      </div>
+
+    <!-- <div class="reviews-section">
+        <div class="review">
+          <h2 class="review-title">
+            This is a review title        
+          </h2>
+          <p class="review-content">
+            This is review content
+          </p>
+        </div>
+    </div> -->
+    
+  </body>
+</html>

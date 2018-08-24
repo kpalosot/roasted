@@ -3,6 +3,8 @@ node_modules/
 *.log
 *.sqlite3
 public/.DS_Store
+*.DS_Store
+.jshintrc
 db/migrations/20160712210838_create_users_table.js
 db/seeds/users.js
 public/styles

@@ -19,6 +19,9 @@ module.exports = (knex) => {
   /////////////HELPER FUNCTIONS////////////
   /////////////////////////////////////////
 
+  router.get("/", (req, res) => {
+    res.render('index');
+    });
 
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
@@ -94,4 +97,4 @@ module.exports = (knex) => {
   });
 
   return router;
-}
+};
