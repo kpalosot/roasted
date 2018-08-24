@@ -73,12 +73,12 @@ module.exports = (knex) => {
               body: customerText,
               from: twilioNumber,
               to: customer[0].phone_num
-            });
+            }).catch("Sending customer text message failed.");
             client.messages.create({
               body: cookText,
               from: twilioNumber,
               to: ownerNumber
-            });
+            }).catch("Sending owner text message failed.");
           })
           .catch(err => console.error("Error on notifying customer/owner:", err))
       });

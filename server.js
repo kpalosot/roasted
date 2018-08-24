@@ -2,7 +2,6 @@
 
 require('dotenv').config();
 
-<<<<<<< HEAD
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
@@ -15,19 +14,6 @@ const knexConfig = require("./knexfile");
 const knex = require("knex")(knexConfig[ENV]);
 const morgan = require('morgan');
 const knexLogger = require('knex-logger');
-=======
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-// const sass        = require("node-sass-middleware");
-const app         = express();
-
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
->>>>>>> views/welcome_page
 
 // Seperated Routes for each Resource
 const routes = require("./routes/routes");
@@ -43,7 +29,6 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
-<<<<<<< HEAD
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -53,15 +38,6 @@ app.use(bodyParser.urlencoded({
   debug: true,
   outputStyle: 'expanded'
 })); */
-=======
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use("/styles", sass({
-//   src: __dirname + "/styles",
-//   dest: __dirname + "/public/styles",
-//   debug: true,
-//   outputStyle: 'expanded'
-// }));
->>>>>>> views/welcome_page
 app.use(express.static("public"));
 
 app.use(cookieSession({
