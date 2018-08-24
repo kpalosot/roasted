@@ -45,6 +45,7 @@ module.exports = (knex) => {
       estimated_time: req.body.estimated_time
     })
     .returning('id')
+    .catch(err => console.error("Error on order insertion to orders table:", err))
     .then((orderId) => {
       // getting customer's phone number and name from the database
       knex.select('phone_num', 'name')
@@ -66,11 +67,9 @@ module.exports = (knex) => {
         });
       })
       .catch(err => console.error("Error on notifying customer/owner:", err))
-    })
-    .catch(err => console.error("Error on order insertion to orders table:", err));
+    });
 
   });
-
 
   router.post("/login", (req, res) =>{
     knex.select('id')
