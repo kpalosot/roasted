@@ -154,3 +154,171 @@ html {
   text-align: center;
   align-self: end;
   grid-row-gap: 1rem; }
+
+html {
+  height: 100%; }
+
+body {
+  background-color: #EEE;
+  height: 100%; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
+  background-position: center;
+  align-items: center;
+  grid-column-gap: 30px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+  .container h1 {
+    grid-column: span 2;
+    margin: 0 auto;
+    color: #EEE;
+    text-shadow: 5px 5px 4px #000000;
+    font-size: 4em; }
+  .container h3 {
+    grid-column: span 2;
+    margin: 0 auto;
+    color: #EEE;
+    text-shadow: 5px 5px 4px #000000;
+    font-size: 2em; }
+  .container button {
+    width: 35%;
+    height: 50px;
+    justify-self: center;
+    border-radius: 5px;
+    box-shadow: 10px 10px 8px #434242; }
+
+button:hover {
+  background-color: #171414cb;
+  color: white; }
+
+.banner {
+  width: 100%;
+  background-color: black;
+  position: relative;
+  color: white;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  height: 5em; }
+
+h1 {
+  color: #EEE;
+  position: relative; }
+
+.location-section {
+  width: 100%;
+  position: relative;
+  color: white; }
+
+#address {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(4, min-content);
+  grid-row-gap: 1.5em;
+  color: #000000;
+  z-index: 100;
+  position: absolute;
+  background: #434242;
+  opacity: .75;
+  right: 0;
+  text-align: center;
+  margin: 3em;
+  color: #EEE; }
+
+#location-map {
+  position: absolute;
+  width: 100%; }
+
+.reviews-section {
+  z-index: 1000; }
+
+.modal {
+  visibility: hidden;
+  position: fixed;
+  z-index: 1000;
+  overflow: auto;
+  width: 50%;
+  height: 30em;
+  background-color: #434242;
+  top: 20%;
+  left: 25%;
+  opacity: 0.90;
+  border-radius: 1.5em; }
+
+.show {
+  visibility: visible; }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+.login-form {
+  margin: 10px;
+  background: black;
+  color: white;
+  height: 100%;
+  overflow: auto; }
+
+body {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  grid-template-rows: 10rem min-content 1fr; }
+
+main {
+  grid-column: 2;
+  grid-row: 2; }
+
+article.order {
+  box-shadow: 10px 10px 8px 5px #888888;
+  border-radius: 0.5em;
+  width: 18rem;
+  height: 10rem;
+  display: grid;
+  grid-template-rows: 0.75rem 2rem 1fr 0.75rem;
+  grid-template-columns: 0.75rem 1fr 1fr 0.75rem; }
+
+article > header {
+  grid-column: 2 / span 2;
+  grid-row: 2; }
+
+div.order-body {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; }
+
+p.customer-container {
+  grid-column: 1 / span 2;
+  grid-row: 1; }
+
+p.customer-timer {
+  grid-column: 1;
+  grid-row: 2; }
+
+div.order-body > button {
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 0.5em;
+  height: 2.5em;
+  width: 8em; }
