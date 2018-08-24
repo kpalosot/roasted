@@ -10,19 +10,29 @@
   <script type="text/javascript" src="/scripts/orders.js"></script>
 </head>
 <body>
-  <nav>NAV PLACE HOLDER</nav>
-
-  <main class="container">
-    <section class="orders-container">
-      <article class="order">
-        <header>Order: XX</header>
-        <div class="order-body">
-          <p class="customer-container">Customer: user1@example.com</p>
-          <p class="customer-timer">Timer: OO:OO</p>
-          <button>Finish</button>
-        </div>
-      </article>
-    </section>
-  </main>
+  <div class="order-body">
+    <main class="container">
+      <section class="orders-container">
+        <% Object.keys(orders)forEach((order) => {%>
+            <article class="order">
+              <header>Order: <% order.id%></header>
+              <div class="order-body">
+                <p class="customer-container">Customer: <%= order.name%></p>
+                <p class="customer-timer">Timer: order.estimated_time</p>
+                <button>Finish</button>
+              </div>
+            </article>
+        <%});%>
+        <!-- <article class="order">
+          <header>Order: XX</header>
+          <div class="order-body">
+            <p class="customer-container">Customer: user1@example.com</p>
+            <p class="customer-timer">Timer: OO:OO</p>
+            <button>Finish</button>
+          </div>
+        </article> -->
+      </section>
+    </main>
+  </div>
 </body>
 </html>
