@@ -40,16 +40,17 @@ body {
     text-shadow: 5px 5px 4px #000000;
     font-size: 2em;
   }
-  button {
+  #login-btn, #order-btn{
     width: 35%;
     height: 50px;
     justify-self: center;
     border-radius: 5px;
     box-shadow: 10px 10px 8px #434242;
+    font-size: 1.5em;
   }
 }
 
-button:hover {
+#login-btn:hover, #order-btn:hover {
   background-color: #171414cb;
   color: white;
 }

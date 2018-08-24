@@ -1,10 +1,8 @@
 .modal {
     visibility: hidden;
     position: fixed;
-    z-index: 1000;
     overflow: auto;
     width: 50%;
-    height: 30em;
     background-color: #434242;
     top: 20%;
     left: 25%;
@@ -30,10 +28,69 @@
     cursor: pointer;
 }
 
-.login-form {
-  margin: 10px;
-  background: black;
-  color: white;
-  height: 100%;
-  overflow: auto;
+
+.modal-content {
+  padding: 10px;
+  height: 95%;
+
 }
+
+form {
+  height: 100%;
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  border-radius: 1.5em;
+  margin: auto;
+  max-width: 600px;
+  // margin-left: auto;
+  // margin-right: auto;
+  padding: 1em;
+  font-size: 1.5em;
+
+}
+form input {
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid #9c9c9c;
+}
+form button {
+  background: lightgrey;
+  padding: 0.7em;
+  border: 0;
+}
+form button:hover {
+  background: #434242;
+}
+
+label {
+  text-align: left;
+  display: block;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+input {
+  width: 100%;
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+}
+
+// @media (min-width: 400px) {
+//   form {
+//     overflow: hidden;
+//   }
+
+//   label {
+//     float: left;
+//     width: 200px;
+//   }
+
+//   input {
+//     float: left;
+//     width: calc(100% - 200px);
+//   }
+
+//   button {
+//     float: right;
+//     width: calc(100% - 200px);
+//   }
+// }

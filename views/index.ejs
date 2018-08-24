@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
-    <link rel="stylesheet" href="/styles/style.css" type="text/css" >
-=======
 <head>
   <title>Roasted</title>
->>>>>>> c655e6321f8575b1909dd736467a81067d113c3e
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -19,12 +12,6 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/login.js"></script>
 
-<<<<<<< HEAD
-  <body>
-    <nav>
-      <% include partials/_header.ejs %>
-    </nav>
-=======
   <!-- jQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -33,12 +20,10 @@
 <body>
 
   <% include partials/_header.ejs %>
->>>>>>> c655e6321f8575b1909dd736467a81067d113c3e
     <main class="container">
       <h1>Welcome to Roasted</h1>
-      <!-- <h3>Where everything tastes better!!</h3> -->
       <button id="login-btn">Login</button>
-      <button type="button" onclick="location.href='/roasted/menu'">Order</button>
+      <button id="order-btn" type="button" onclick="location.href='/roasted/menu'">Order</button>
     </main>
 
     <div class="banner">
@@ -69,10 +54,6 @@
             <td>Closed</td>
           </tr>
         </table>
-        <!-- <span>Opening Hours:</span>
-        <span>Monday to Friday: 9:00am - 9:00pm</span>
-        <span>Saturday: 12:00pm - 4:00pm</span>
-        <span>Sunday: Closed</span> -->
       </div>
     </div>
     <!-- Login form -->
@@ -80,26 +61,23 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-      </div>
-      <div class="login-form">
-        <form action="#">
-          <p>Please login:</p>
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" autocomplete="off">
-        </form>
+        <form class="login-form" action="/roasted/menu">
+            <!-- <div class="top-section">
+              <span id="customer-login">Customer login</span>
+              <span id="owner-login">Owner login</span>
+            </div> -->
+    
+                <label for="email">Email</label>
+                <input id="email" type="email" autocomplete="off" required>
+
+                <label for="password">Password</label>
+                <input id="password" type="password" required>
+    
+                <button type="submit" >Submit</button>
+                <button type="reset" >clear</button>
+            </form>
       </div>
     </div>
-
-    <!-- <div class="reviews-section">
-        <div class="review">
-          <h2 class="review-title">
-            This is a review title        
-          </h2>
-          <p class="review-content">
-            This is review content
-          </p>
-        </div>
-    </div> -->
 
 </body>
 
