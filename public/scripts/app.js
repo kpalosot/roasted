@@ -7,77 +7,105 @@
 
 
 $(document).ready(function () {
+  console.log("PAGE RENDERED");
 
-  //Load tweets on start up
-  $.ajax('/roasted/menu', {
-      method: 'GET'
-    })
-    .then((response) => {
-      console.log('response is:', response);
-      /*  $(".counter").text("140");
-       $(".new-tweet__errorMessage").slideUp("fast"); 
-      renderTweets(response);*/
+  function updateItemPrice() {
+
+    $(".checkout__item").each(function (index) {
+      let itemPrice = 0;
+      itemPrice += $(this).data("price") * $(this).children().children(".checkout__item--quantity--text").text();
+      $(this).children(".checkout__item--price").text("$" + itemPrice.toFixed(2));
     });
 
+  }
+
+  function updateTotalPrice() {
+    let totalPrice = 0;
+    $(".checkout__item").each(function (index) {
+      totalPrice += $(this).data("price") * $(this).children().children(".checkout__item--quantity--text").text();
+    });
+    $(".checkout__sumDisplay--total").text("$" + totalPrice.toFixed(2));
+  }
+
+  function updateEstTime() {
+    let totalTime = 0;
+
+    $(".checkout__item").each(function (index) {
+      totalTime += $(this).data("estimated_time") * $(this).children().children(".checkout__item--quantity--text").text();
+    });
+    $(".checkout__estimated-time").text(`Ready in ${totalTime} minutes`);
+  }
+
+  function addToCheckout(item) {
+    const id = item.id;
+    const estimated_time = item.estimated_time;
+    const description = item.description;
+    const type = item.type;
+    const img_url = item.img_url;
+    const price = item.price;
+
+    let newCheckoutItem = `<li class="checkout__item" data-price=${item.price} data-estimated_time = ${item.estimated_time} data-quantity=1>
+            <div class="checkout__item--name">${item.name}</div>
+            <div class="checkout__item--quantity">
+              <div class="button__checkout--minus button__checkout">-</div>
+              <p class="normal-text checkout__item--quantity--text">1</p>
+              <div class="button__checkout--plus button__checkout">+</div>
+            </div>
+            <div class="checkout__item--price">$${item.price}</div>
+            <div class="checkout__item--delete">X</div>
+          </li>`;
+    $(".checkout__list").append(newCheckoutItem);
+
+    updateTotalPrice();
+    updateEstTime();
+  }
+
+  //Event Listeners
+  $(".button__add").on("click", function () {
+    const menu__container = $(this).parent().parent().parent(".menu__container");
+
+    const newCheckoutItem = {
+      id: menu__container.data("id"),
+      estimated_time: menu__container.data("esttime"),
+      name: menu__container.data("name"),
+      description: menu__container.data("description"),
+      type: menu__container.data("type"),
+      img_url: menu__container.data("img_url"),
+      price: menu__container.data("price")
+    };
+
+    addToCheckout(newCheckoutItem);
+  });
 
 
-  /*   function createTweetElement(tweet) {
-      const name = tweet.user.name;
-      const handle = tweet.user.handle;
-      const avatarUrl = tweet.user.avatars.small;
-      const content = tweet.content.text;
-      const timeStamp = new Date(tweet.created_at).getTime();
-      const today = new Date().getTime();
-      const time = Math.floor((today - timeStamp) / 1000 / 60 / 60 / 24);
+  //Checkout Item's Plus and Minus Button 
+  $('.checkout__list').on('click', '.button__checkout--plus', function () {
+    const quantityDisplay = $(this).siblings(".checkout__item--quantity--text");
 
-      let singleTweet = `
-          <div class="single-tweet">
-            <div class="single-tweet__rowOne">
-            <img class="single-tweet__userIcon" src="${avatarUrl}">
-            <h2 class="single-tweet__userName">${name}</h2>
-            <p class="single-tweet__twitterName">${handle}</p>
-            </div>
-            <div class="single-tweet__rowTwo">
-            <p class="single-tweet__textArea">
-                ${escape(content)}
-            </p>
-            </div>
-            <div class="single-tweet__rowThree">
-            <div class="single-tweet__daysAgo">
-                ${time} days ago
-            </div>
-            <div class="single-tweet__likesContainer">
-      <div class="single-tweet__likesLabel">Likes</div>
-      <div class="single-tweet__likesCount">0</div>
-    </div>
-            <div class="single-tweet__twitterIcons">
-                <p alt="flag" class="single-tweet__twitterIcons--flag">Flag</p>
-                <p alt="retweet" class="single-tweet__twitterIcons--retweet">Retweet</p>
-                <p alt="heart" class="single-tweet__twitterIcons--heart">Heart</p>
-            </div>
-            </div>
-            </div>
-            `;
+    let totalQuantity = Number(quantityDisplay.text());
 
-      return singleTweet;
+    quantityDisplay.text(totalQuantity += 1);
+    updateEstTime();
+    updateTotalPrice();
+    updateItemPrice();
+  });
+
+  $('.checkout__list').on('click', '.button__checkout--minus', function () {
+    const quantityDisplay = $(this).siblings(".checkout__item--quantity--text");
+    let totalQuantity = Number(quantityDisplay.text());
+    if (totalQuantity > 0) {
+      quantityDisplay.text(totalQuantity -= 1);
     }
+    updateEstTime();
+    updateTotalPrice();
+    updateItemPrice();
+  });
 
-    function renderTweets(tweets) {
-      // loops through tweets
-      // calls createTweetElement for each tweet
-      // takes return value and appends it to the tweets container
-
-      tweets.sort((a, b) => {
-        var timeA = a.created_at;
-        var timeB = b.created_at;
-        if (timeA < timeB)
-          //sort string ascending
-          return 1;
-        if (timeA > timeB) return -1;
-      }).forEach((cur, i) => {
-        let $tweet = createTweetElement(cur);
-        $(".display-tweets").append($tweet);
-      });
-    } */
-
+  //Delete an item from chckout
+  $('.checkout__list').on('click', '.checkout__item--delete', function () {
+    $(this).parent().remove();
+    updateEstTime();
+    updateTotalPrice();
+    updateItemPrice();
+  });
 });

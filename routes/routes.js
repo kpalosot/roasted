@@ -5,36 +5,29 @@ const router = express.Router();
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
-      });
-  });
+
+
+
+  /////////////////////////////////////////
+  /////////////HELPER FUNCTIONS////////////
+  /////////////////////////////////////////
+
 
   router.get("/menu", (req, res) => {
     console.log("SEINDING MENU PAGE");
     console.log("I AM MENU PAGE");
+
     knex.select('*')
       .from('menu')
-
-      .then(function (result) {
-        console.log("menu table, ", result);
+      .then(function (menu) {
         let templateVars = {
-          menu: result
+          menu
         };
-        res.render("menu",
-          templateVars
-        );
-      })
+        res.render('menu', templateVars);
 
-      .catch(function (error) {
-        console.error(error)
+      }).catch(function (error) {
+        console.error(error);
       });
-
-
   });
 
   router.get("/owner", (req, res) => {

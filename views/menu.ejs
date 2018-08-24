@@ -18,9 +18,10 @@
       <h2 class="header-secondary">
         Menu
       </h2>
-
       <% for (var id in menu) { %>
-        <div class="menu__container">
+        <div class="menu__container" id="<%= menu[id].id %>" data-estTime="<%= menu[id].order_time_estimate %>" data-id="<%= menu[id].id %>"
+          data-name="<%= menu[id].name %>" data-description="<%= menu[id].description %>" data-type="<%= menu[id].type %>"
+          data-img_url="<%= menu[id].img_url %>" data-price="<%= menu[id].price %>">
           <img class="menu__image" src="<%= menu[id].img_url %>">
           <div class="menu__detail">
             <h3 class="header-tertiary">
@@ -53,105 +54,25 @@
       </div>
       <div class="checkout__body">
         <ul class="checkout__list">
-          <li class="checkout__item">
+          <!-- <li class="checkout__item">
             <div class="checkout__item--name">Roasted Pig</div>
             <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
+              <div class="button__checkout--minus button__checkout">-</div>
               <p class="normal-text">1</p>
               <div class="button__checkout--plus button__checkout">+</div>
             </div>
             <div class="checkout__item--price">$499</div>
             <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
-          <li class="checkout__item">
-            <div class="checkout__item--name">Roasted Pig</div>
-            <div class="checkout__item--quantity">
-              <div class="button__checkout--plus button__checkout">-</div>
-              <p class="normal-text">1</p>
-              <div class="button__checkout--plus button__checkout">+</div>
-            </div>
-            <div class="checkout__item--price">$499</div>
-            <div class="checkout__item--delete">X</div>
-          </li>
+          </li> -->
         </ul>
         <div class="checkout__sumDisplay">
           <p class="normal-text">Total</p>
-          <div class="checkout__sumDisplay--total">$1000</div>
+          <div class="checkout__sumDisplay--total">$0</div>
         </div>
       </div>
       <div class="checkout__footer">
         <div class="button button__placeOrder">Place Order</div>
-        <p class="normal-text">Ready in 15-20minutes</p>
+        <p class="normal-text checkout__estimated-time">Estimated Time</p>
       </div>
     </section>
 </body>
