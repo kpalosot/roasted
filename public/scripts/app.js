@@ -19,6 +19,7 @@ $(document).ready(function () {
 
   }
 
+  //at checkout, updates total price 
   function updateTotalPrice() {
     let totalPrice = 0;
     $(".checkout__item").each(function (index) {
@@ -27,6 +28,7 @@ $(document).ready(function () {
     $(".checkout__sumDisplay--total").text("$" + totalPrice.toFixed(2));
   }
 
+  //at checkout, updates total estimated time
   function updateEstTime() {
     let totalTime = 0;
 
@@ -36,6 +38,7 @@ $(document).ready(function () {
     $(".checkout__estimated-time").text(`Ready in ${totalTime} minutes`);
   }
 
+  //add to checkout section
   function addToCheckout(item) {
     const id = item.id;
     const estimated_time = item.estimated_time;
@@ -60,7 +63,36 @@ $(document).ready(function () {
     updateEstTime();
   }
 
-  //Event Listeners
+  ///////////////////////////
+  //////Event Listeners//////
+  ///////////////////////////
+
+  //////////////////////////
+  //------- MENU ---------//
+  //////////////////////////
+
+
+  //Top logo, 
+  //method:get 
+  //route: "/"
+  $(".nav-bar__logo").on("click", function () {
+    $.ajax({
+      type: "GET",
+      url: "/roasted/"
+    }).done(function (response) {
+      console.log('nav bar logo clicked.');
+    });
+  });
+
+
+
+  //"place order" button, adding the order to the 
+  //database
+
+
+
+
+  //Adding menu item to checkout section
   $(".button__add").on("click", function () {
     const menu__container = $(this).parent().parent().parent(".menu__container");
 
