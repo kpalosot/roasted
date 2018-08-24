@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <%- include partials/_header.ejs %>
+    <section class="section__menu">
+      <h2 class="header-secondary">
+        Menu
+      </h2>
+      <% for (var id in menu) { %>
+        <div class="menu__container" id="<%= menu[id].id %>" data-estTime="<%= menu[id].order_time_estimate %>" data-id="<%= menu[id].id %>"
+          data-name="<%= menu[id].name %>" data-description="<%= menu[id].description %>" data-type="<%= menu[id].type %>"
+          data-img_url="<%= menu[id].img_url %>" data-price="<%= menu[id].price %>">
+          <img class="menu__image" src="<%= menu[id].img_url %>">
+          <div class="menu__detail">
+            <h3 class="header-tertiary">
+              <%= menu[id].name %>
+            </h3>
+            <div class="menu__description normal-text">
+              <%= menu[id].description %>
+            </div>
+            <div class="menu__footer">
+              <div class="menu__price">
+                $
+                <%= menu[id].price %>
+              </div>
+              <div class="button button__add">
+                Add
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }; %>
+    </section>
+    <section class="section__checkout">
+      <div class="checkout__header">
+        <h3 class="header-tertiary">
+          Roasted Inc.
+        </h3>
+        <p class="normal-text">
+          147 Spadina Ave
+        </p>
+      </div>
+      <div class="checkout__body">
+        <ul class="checkout__list">
+          <!-- <li class="checkout__item">
+            <div class="checkout__item--name">Roasted Pig</div>
+            <div class="checkout__item--quantity">
+              <div class="button__checkout--minus button__checkout">-</div>
+              <p class="normal-text">1</p>
+              <div class="button__checkout--plus button__checkout">+</div>
+            </div>
+            <div class="checkout__item--price">$499</div>
+            <div class="checkout__item--delete">X</div>
+          </li> -->
+        </ul>
+        <div class="checkout__sumDisplay">
+          <p class="normal-text">Total</p>
+          <div class="checkout__sumDisplay--total">$0</div>
+        </div>
+      </div>
+      <div class="checkout__footer">
+        <div class="button button__placeOrder">Place Order</div>
+        <p class="normal-text checkout__estimated-time">Estimated Time</p>
+      </div>
+    </section>
+</body>
+
+</html>

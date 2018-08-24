@@ -1,6 +1,8 @@
 node_modules/
-public/styles
 .env
 *.log
 *.sqlite3
 public/.DS_Store
+db/migrations/20160712210838_create_users_table.js
+db/seeds/users.js
+public/styles
