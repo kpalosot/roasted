@@ -1,1 +1,49 @@
+<<<<<<< HEAD
 
+=======
+main {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+article.order {
+  box-shadow: 10px 10px 8px 5px #888888;
+  border-radius: 0.5em;
+  width: 18rem;
+  height: 10rem;
+  display: grid;
+  grid-template-rows: 0.75rem 2rem 1fr 0.75rem;
+  grid-template-columns: 0.75rem 1fr 1fr 0.75rem;
+}
+
+article>header {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+}
+
+div.order-body {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+p.customer-container {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+p.customer-timer {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+div.order-body>button {
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 0.5em;
+  height: 2.5em;
+  width: 8em;
+}
+>>>>>>> fb021824bc1353ba9ce15734855b9ccb33f0c6c1

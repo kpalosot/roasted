@@ -15,11 +15,15 @@
 *,
 *::before,
 *::after {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  font-family: 'Raleway', sans-serif; }
 
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
+
+.header-primary {
+  font-size: 4em; }
 
 .header-secondary {
   font-size: 5rem;
@@ -103,7 +107,7 @@ html {
   grid-row-gap: 1rem;
   box-shadow: 0px 1px 10px 2px #888888;
   background-color: white;
-  top: 38%; }
+  bottom: 1%; }
 
 .checkout__header {
   display: grid;
@@ -160,6 +164,8 @@ html {
   height: 100%; }
 
 body {
+  flex-direction: column;
+  align-items: center;
   background-color: #EEE;
   height: 100%; }
 
@@ -171,7 +177,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(/img/thick-roasted.png);
   background-position: center;
   align-items: center;
   grid-column-gap: 30px;
@@ -184,21 +190,22 @@ body {
     margin: 0 auto;
     color: #EEE;
     text-shadow: 5px 5px 4px #000000;
-    font-size: 4em; }
+    font-size: 7em; }
   .container h3 {
     grid-column: span 2;
     margin: 0 auto;
     color: #EEE;
     text-shadow: 5px 5px 4px #000000;
     font-size: 2em; }
-  .container button {
+  .container #login-btn, .container #order-btn {
     width: 35%;
     height: 50px;
     justify-self: center;
     border-radius: 5px;
-    box-shadow: 10px 10px 8px #434242; }
+    box-shadow: 10px 10px 8px #434242;
+    font-size: 1.5em; }
 
-button:hover {
+#login-btn:hover, #order-btn:hover {
   background-color: #171414cb;
   color: white; }
 
@@ -210,8 +217,7 @@ button:hover {
   display: grid;
   grid-template-rows: auto;
   align-items: center;
-  justify-items: center;
-  height: 5em; }
+  justify-items: center; }
 
 h1 {
   color: #EEE;
@@ -235,7 +241,9 @@ h1 {
   right: 0;
   text-align: center;
   margin: 3em;
-  color: #EEE; }
+  color: #EEE;
+  font-size: 1.75em;
+  padding: 10px; }
 
 #location-map {
   position: absolute;
@@ -247,12 +255,10 @@ h1 {
 .modal {
   visibility: hidden;
   position: fixed;
-  z-index: 1000;
   overflow: auto;
   width: 50%;
-  height: 30em;
   background-color: #434242;
-  top: 20%;
+  top: 40%;
   left: 25%;
   opacity: 0.90;
   border-radius: 1.5em; }
@@ -273,9 +279,38 @@ h1 {
   text-decoration: none;
   cursor: pointer; }
 
-.login-form {
-  margin: 10px;
-  background: black;
-  color: white;
+.modal-content {
+  padding: 10px;
+  height: 95%; }
+
+form {
   height: 100%;
-  overflow: auto; }
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  border-radius: 1.5em;
+  margin: auto;
+  padding: 1em;
+  font-size: 1.5em; }
+
+form input {
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid #9c9c9c; }
+
+form button {
+  background: lightgrey;
+  padding: 0.7em;
+  border: 0; }
+
+form button:hover {
+  background: #434242; }
+
+label {
+  text-align: left;
+  display: block;
+  padding: 0.5em 1.5em 0.5em 0; }
+
+input {
+  width: 100%;
+  padding: 0.7em;
+  margin-bottom: 0.5rem; }

@@ -43,13 +43,8 @@ module.exports = (knex) => {
     res.render("orders");
   });
 
-  router.get("/login", (req, res) => {
-    console.log("SEINDING LOGIN PAGE");
-    console.log("I AM login PAGE");
-  });
-
   router.post("/order", (req, res) => {
-    const customerId = 5; //req.cookie.session.customer_id
+    const customerId =  req.session.customer_id;
     console.log(req.body);
     // inserting order info to db
     if (req.body.orders) {
@@ -86,13 +81,15 @@ module.exports = (knex) => {
   });
 
   router.post("/login", (req, res) => {
+    console.log("req.body.email:", req.body.email);
     knex.select('id')
       .from('customers')
-      .where('name', req.body.username)
+      .where('name', req.body.email)
       .then(customer => {
         req.session.customer_id = customer[0].id;
+        res.redirect("/roasted/menu");
       })
-      .then(res.sendStatus(200));
+      .catch(err => console.log('Error on logging in:', err));
 
   });
 
