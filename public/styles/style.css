@@ -15,11 +15,15 @@
 *,
 *::before,
 *::after {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  font-family: 'Raleway', sans-serif; }
 
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
+
+.header-primary {
+  font-size: 4em; }
 
 .header-secondary {
   font-size: 5rem;
@@ -103,7 +107,7 @@ html {
   grid-row-gap: 1rem;
   box-shadow: 0px 1px 10px 2px #888888;
   background-color: white;
-  top: 38%; }
+  bottom: 1%; }
 
 .checkout__header {
   display: grid;
@@ -160,6 +164,8 @@ html {
   height: 100%; }
 
 body {
+  flex-direction: column;
+  align-items: center;
   background-color: #EEE;
   height: 100%; }
 
@@ -171,7 +177,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(/img/thick-roasted.png);
   background-position: center;
   align-items: center;
   grid-column-gap: 30px;
@@ -184,7 +190,7 @@ body {
     margin: 0 auto;
     color: #EEE;
     text-shadow: 5px 5px 4px #000000;
-    font-size: 4em; }
+    font-size: 7em; }
   .container h3 {
     grid-column: span 2;
     margin: 0 auto;
@@ -211,8 +217,7 @@ body {
   display: grid;
   grid-template-rows: auto;
   align-items: center;
-  justify-items: center;
-  height: 5em; }
+  justify-items: center; }
 
 h1 {
   color: #EEE;
@@ -236,7 +241,9 @@ h1 {
   right: 0;
   text-align: center;
   margin: 3em;
-  color: #EEE; }
+  color: #EEE;
+  font-size: 1.75em;
+  padding: 10px; }
 
 #location-map {
   position: absolute;
@@ -251,7 +258,7 @@ h1 {
   overflow: auto;
   width: 50%;
   background-color: #434242;
-  top: 20%;
+  top: 40%;
   left: 25%;
   opacity: 0.90;
   border-radius: 1.5em; }
@@ -282,7 +289,6 @@ form {
   border: 1px solid #c1c1c1;
   border-radius: 1.5em;
   margin: auto;
-  max-width: 600px;
   padding: 1em;
   font-size: 1.5em; }
 

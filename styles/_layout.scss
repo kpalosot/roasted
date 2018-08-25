@@ -3,6 +3,8 @@ html {
 }
 
 body {
+  flex-direction: column;
+  align-items: center;
   background-color: #EEE;
   height: 100%; // h1 {
   //   color: #244751;
@@ -18,7 +20,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(http://www.amyglaze.com/wp-content/uploads/2013/10/DSC_1046.jpg);
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url(/img/thick-roasted.png);
   background-position: center; // margin-top: 125px;
   align-items: center;
   grid-column-gap: 30px;
@@ -31,7 +33,7 @@ body {
     margin: 0 auto;
     color: #EEE;
     text-shadow: 5px 5px 4px #000000;
-    font-size: 4em;
+    font-size: 7em;
   }
   h3 {
     grid-column: span 2;
@@ -64,7 +66,6 @@ body {
   grid-template-rows: auto;
   align-items: center;
   justify-items: center;
-  height: 5em;
 }
 
 h1 {
@@ -95,6 +96,8 @@ h1 {
   text-align: center;
   margin: 3em;
   color: #EEE;
+  font-size: 1.75em;
+  padding: 10px;
 }
 
 #location-map {
