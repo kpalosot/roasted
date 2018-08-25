@@ -64,7 +64,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form class="login-form" action="/roasted/login" METHOD="POST">
+        <form class="login-form">
             <!-- <div class="top-section">
               <span id="customer-login">Customer login</span>
               <span id="owner-login">Owner login</span>
@@ -72,11 +72,10 @@
     
                 <label for="email">Email</label>
                 <input id="email" type="email" autocomplete="off" required name="email">
-
                 <label for="password">Password</label>
                 <input id="password" type="password" required>
-    
-                <button type="submit" >Submit</button>
+                <div class="err-msg"> <p>invalid email and/or password</p> </div>
+                <button id="login-submit" type="submit" >Submit</button>
                 <button type="reset" >clear</button>
             </form>
       </div>

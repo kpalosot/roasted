@@ -314,3 +314,10 @@ input {
   width: 100%;
   padding: 0.7em;
   margin-bottom: 0.5rem; }
+
+.err-msg {
+  display: none;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #c66868;
+  border-radius: 5px; }

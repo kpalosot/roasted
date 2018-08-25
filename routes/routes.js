@@ -86,6 +86,9 @@ module.exports = (knex) => {
       .from('customers')
       .where('name', req.body.email)
       .then(customer => {
+        if(customer.length === 0){
+          res.json({error: "User is not registered."});
+        }
         req.session.customer_id = customer[0].id;
         res.redirect("/roasted/menu");
       })

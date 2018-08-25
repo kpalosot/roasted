@@ -7,8 +7,4 @@ $(document).ready(function(){
   $(".close").click(function() {
     $(".modal").removeClass("show");
   });
-
-  // $(".modal").blur (function(){
-  //   $(".modal").removeClass("show");
-  // });
 });
