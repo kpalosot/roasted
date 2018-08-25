@@ -9,14 +9,22 @@
 $(document).ready(function () {
   console.log("PAGE RENDERED");
 
-  function updateItemPrice() {
+  function getOrderDetail() {
+    let orderItemNames = [];
 
+    $(".checkout__item").each(function (index) {
+      orderItemNames.push($(this).children().children(".checkout__item--quantity--text").text() + " " + $(this).children(".checkout__item--name").text());
+    });
+
+    return orderItemNames;
+  }
+
+  function updateItemPrice() {
     $(".checkout__item").each(function (index) {
       let itemPrice = 0;
       itemPrice += $(this).data("price") * $(this).children().children(".checkout__item--quantity--text").text();
       $(this).children(".checkout__item--price").text("$" + itemPrice.toFixed(2));
     });
-
   }
 
   //at checkout, updates total price 
@@ -71,26 +79,28 @@ $(document).ready(function () {
   //------- MENU ---------//
   //////////////////////////
 
-
-  //Top logo, 
-  //method:get 
-  //route: "/"
-  $(".nav-bar__logo").on("click", function () {
-    $.ajax({
-      type: "GET",
-      url: "/roasted/"
-    }).done(function (response) {
-      console.log('nav bar logo clicked.');
-    });
-  });
-
-
-
   //"place order" button, adding the order to the 
   //database
+  $(".button__placeOrder").on("click", function () {
+    let totalPrice = $(".checkout__sumDisplay--total").text().replace("$", '');
+    let totalTime = $(".checkout__estimated-time").text().replace(/[^0-9]/gi, '');
+    let placedOrder = getOrderDetail().join(", ");
 
-
-
+    $.ajax('/roasted/order', {
+        method: 'POST',
+        data: {
+          'total_price': `${totalPrice}`,
+          'estimated_time': `${totalTime}`,
+          'orders': `${placedOrder}`
+        },
+      })
+      .then((response) => {
+        console.log("Order placed.");
+        $(".checkout__list").children().remove();
+        $(".checkout__sumDisplay--total").text("$0.00");
+        $(".checkout__estimated-time").text("Estimated Time");
+      });
+  });
 
   //Adding menu item to checkout section
   $(".button__add").on("click", function () {

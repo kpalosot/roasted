@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Roasted</title>
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -9,20 +10,22 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/orders.js"></script>
 </head>
-<body>
-  <nav>NAV PLACE HOLDER</nav>
 
-  <main class="container">
-    <section class="orders-container">
-      <article class="order">
-        <header>Order: XX</header>
-        <div class="order-body">
-          <p class="customer-container">Customer: user1@example.com</p>
-          <p class="customer-timer">Timer: OO:OO</p>
-          <button>Finish</button>
-        </div>
-      </article>
+<body>
+  <% include partials/_header.ejs %>
+    <section class="section__orders">
+
     </section>
-  </main>
 </body>
+
 </html>
+
+
+<!-- <article class="order">
+  <header>Order: XX</header>
+  <div class="order-body">
+    <p class="customer-container">Customer: user1@example.com</p>
+    <p class="customer-timer">Timer: OO:OO</p>
+    <button>Finish</button>
+  </div>
+</article> -->

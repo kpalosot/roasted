@@ -43,54 +43,53 @@ module.exports = (knex) => {
     res.render("orders");
   });
 
-  router.get("/login", (req, res) => {
-    console.log("SEINDING LOGIN PAGE");
-    console.log("I AM login PAGE");
-  });
-
   router.post("/order", (req, res) => {
-    const customerId = 12; //req.cookie.session.customer_id
-
+    const customerId =  req.session.customer_id;
+    console.log(req.body);
     // inserting order info to db
-    knex('orders').insert({
-        customer_id: customerId,
-        estimated_time: req.body.estimated_time
-      })
-      .returning('id')
-      .catch(err => console.error("Error on order insertion to orders table:", err))
-      .then((orderId) => {
-        // getting customer's phone number and name from the database
-        knex.select('phone_num', 'name')
-          .from('customers')
-          .where('id', customerId)
-          .then((customer) => {
-            let customerText = `Your order has been placed with reference ID: ${orderId}`;
-            let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
-            //sending a text message to the customer, then the owner
-            client.messages.create({
-              body: customerText,
-              from: twilioNumber,
-              to: customer[0].phone_num
-            }).catch("Sending customer text message failed.");
-            client.messages.create({
-              body: cookText,
-              from: twilioNumber,
-              to: ownerNumber
-            }).catch("Sending owner text message failed.");
-          })
-          .catch(err => console.error("Error on notifying customer/owner:", err))
-      });
-
+    if (req.body.orders) {
+      knex('orders').insert({
+          customer_id: customerId,
+          estimated_time: req.body.estimated_time
+        })
+        .returning('id')
+        .catch(err => console.error("Error on order insertion to orders table:", err))
+        .then((orderId) => {
+          // getting customer's phone number and name from the database
+          knex.select('phone_num', 'name')
+            .from('customers')
+            .where('id', customerId)
+            .then((customer) => {
+              let customerText = `Your order has been placed with reference ID: ${orderId}, you have ordered: ${req.body.orders}, your total price is: $${req.body.total_price}`;
+              let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
+              //sending a text message to the customer, then the owner
+              client.messages.create({
+                body: customerText,
+                from: twilioNumber,
+                to: customer[0].phone_num
+              }).catch("Sending customer text message failed.");
+              client.messages.create({
+                body: cookText,
+                from: twilioNumber,
+                to: ownerNumber
+              }).catch("Sending owner text message failed.");
+            })
+            .catch(err => console.error("Error on notifying customer/owner:", err))
+        });
+    }
+    res.send("order placed.");
   });
 
   router.post("/login", (req, res) => {
+    console.log("req.body.email:", req.body.email);
     knex.select('id')
       .from('customers')
-      .where('name', req.body.username)
+      .where('name', req.body.email)
       .then(customer => {
         req.session.customer_id = customer[0].id;
+        res.redirect("/roasted/menu");
       })
-      .then(res.sendStatus(200));
+      .catch(err => console.log('Error on logging in:', err));
 
   });
 
