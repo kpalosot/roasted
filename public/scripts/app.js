@@ -9,7 +9,6 @@
 $(document).ready(function () {
   console.log("PAGE RENDERED");
 
-
   function getOrderDetail() {
     let orderItemNames = [];
 
@@ -21,7 +20,6 @@ $(document).ready(function () {
   }
 
   function updateItemPrice() {
-
     $(".checkout__item").each(function (index) {
       let itemPrice = 0;
       itemPrice += $(this).data("price") * $(this).children().children(".checkout__item--quantity--text").text();
