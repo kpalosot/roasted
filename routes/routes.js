@@ -40,11 +40,27 @@ module.exports = (knex) => {
 
   router.get("/owner", (req, res) => {
     console.log("SEINDING OWNER PAGE");
-    res.render("orders");
+
+    knex
+      .select('*')
+      .from('orders')
+      .leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
+      .then(function (orders) {
+        console.log('get /owner, data is:', orders);
+        let templateVars = {
+          orders
+        };
+        res.render('orders', templateVars);
+
+      }).catch(function (error) {
+        console.error(error);
+      });
+
+
   });
 
   router.post("/order", (req, res) => {
-    const customerId =  req.session.customer_id;
+    const customerId = req.session.customer_id;
     console.log(req.body);
     // inserting order info to db
     if (req.body.orders) {

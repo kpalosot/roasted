@@ -150,4 +150,83 @@ $(document).ready(function () {
     updateTotalPrice();
     updateItemPrice();
   });
+
+  //////////////////////////
+  //------- Orders -------//
+  //////////////////////////
+
+  //Countdown Timer
+
+  function timer() {
+    timeLeft = timeLeft - 1;
+    if (timeLeft <= 0) {
+      clearInterval(counter);
+      //counter ended, do something here
+      return;
+    }
+
+    //Do code for showing the number of seconds here
+  }
+
+
+
+  //Initial State
+  //All orders__body hidden
+  //only visible after clicked
+  $(".orders__body").hide();
+
+  //Toggle orders__body content
+  //Only one is visible at a time
+  $(".orders__header").on("click", function () {
+    //let created_at = $(this).siblings().children(".orders__timelapse").data("created_at").slice(0, 8);
+    /*  let created_at = '15:40:49.555'.slice(0, 8);
+     let estimated_time = $(this).siblings().children(".orders__timelapse").data("estimated_time");
+     var now = new Date(Date.now());
+     var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+     let timeLeft = Math.abs(formatted - created_at); */
+
+    /*     console.log(created_at, estimated_time, formatted, timeLeft); */
+
+    var countDownDate = new Date("Aug 25, 2019 17:40:49").getTime();
+    console.log(countDownDate);
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      console.log("this is,");
+      console.log($(this));
+      // Display the result in the element with id="demo"
+      $(".orders__timelapse").text(hours + ": " +
+        minutes + ": " + seconds + "s ");
+
+      // If the count down is finished, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    /*     $(this).siblings().children(".orders__timelapse").text(setInterval(timer, 1000)); //1000 will  run it every 1 second */
+
+
+    $(this).siblings().toggle("fast");
+    $(this).parent().siblings().each(function () {
+      console.log($(this));
+      var displayCheck = $(this).children(".orders__body").css('display') === 'none' ? true : false;
+
+      if (!displayCheck) {
+        $(this).children(".orders__body").css('display', 'none');
+      }
+    });
+  });
 });
