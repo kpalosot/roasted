@@ -58,9 +58,9 @@ module.exports = (knex) => {
   });
 
   router.post("/order", (req, res) => {
-    const customerId = req.session.customer_id;
+    const customerId = req.session.user_id;
     console.log(req.body);
-    console.log(req.session.customer_id);
+    console.log(req.session.user_id);
     // inserting order info to db
     if (req.body.orders && customerId !== undefined) {
       console.log("real order placed.");
@@ -103,14 +103,15 @@ module.exports = (knex) => {
       .from('users')
       .where('name', req.body.email)
       .then(customer => {
-        if(customer.length === 0){
+        if (customer.length === 0) {
           console.log('in if statement or something like that')
           res.sendStatus(401);
         }
         console.log(customer[0].id);
         req.session.customer_id = customer[0].id;
         res.send(200, {
-          redirect: "/roasted/menu"});
+          redirect: "/roasted/menu"
+        });
       })
       .catch(err => console.log('Error on logging in:', err));
   });
@@ -128,6 +129,27 @@ module.exports = (knex) => {
       })
       .del().then(() => {
         res.send("order deleted.");
+      });
+  });
+
+  router.post('/register', (req, res) => {
+    knex('users').insert({
+        name: req.body.email,
+        phone_num: req.body.phone_num,
+        type: 'customer'
+      }).returning('*')
+      .then((user) => {
+        req.session.user_id = user[0].id;
+        client.messages.create({
+            body: "Thank you for signing up with Roasted.",
+            from: twilioNumber,
+            to: user[0].phone_num
+          })
+          .then(() => {
+            res.status(200).send({
+              redirect: '/roasted/menu'
+            });
+          });
       });
   });
   return router;

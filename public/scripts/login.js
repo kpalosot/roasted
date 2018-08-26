@@ -45,5 +45,25 @@ $(document).ready(function(){
     });
   });
 
+  $("#register-submit").click(function (e) {
+    e.preventDefault();
+    let $registerEmail = $("#register-email").val();
+    let $phone = $("#phone").val().replace(/\D/g, '');
+    console.log($phone);
+    $.ajax('/roasted/register', {
+      method: 'POST',
+      data: {
+        email: $registerEmail,
+        phone_num: $phone
+      }, 
+      error: function () {
+        $(".err-register").slideDown();
+      },
+      success: function(data) {
+        window.location.href = data.redirect;
+      }
+    });
+  });
+
 
 });
