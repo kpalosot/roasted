@@ -86,7 +86,20 @@ module.exports = (knex) => {
   });
 
   router.get("/owner/addItem", (req, res) => {
-    res.render("new_item");
+    if(req.session.user_id){
+      knex.select('type')
+      .from('users')
+      .where('id', req.session.user_id)
+      .then(user =>{
+        if(user[0].type === 'owner'){
+          res.render("new_item");
+        } else{
+          res.sendStatus('403');
+        }
+      })
+      .catch(error => console.error("Error:", error));
+    }
+
   });
 
   router.post("/order", (req, res) => {
