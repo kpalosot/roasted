@@ -7,6 +7,9 @@
   <!-- Google fonts - raleway -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:500,700,800,900" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/style.css" type="text/css" />
@@ -59,26 +62,7 @@
         </table>
       </div>
     </div>
-    <!-- Login form -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form class="login-form">
-            <!-- <div class="top-section">
-              <span id="customer-login">Customer login</span>
-              <span id="owner-login">Owner login</span>
-            </div> -->
-    
-                <label for="email">Email</label>
-                <input id="email" type="email" autocomplete="off" required name="email">
-                <label for="password">Password</label>
-                <input id="password" type="password" required>
-                <div class="err-msg"> <p>invalid email and/or password</p> </div>
-                <button id="login-submit" type="submit" >Submit</button>
-                <button type="reset" >clear</button>
-            </form>
-      </div>
-    </div>
+<% include partials/_login-form.ejs %>
+<% include partials/_register-form.ejs %>
   </body>
 </html>
