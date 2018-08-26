@@ -109,7 +109,7 @@ module.exports = (knex) => {
           res.sendStatus(401);
         }
         console.log(customer[0].id);
-        req.session.customer_id = customer[0].id;
+        req.session.user_id = customer[0].id;
         res.send(200, {
           redirect: "/roasted/menu"
         });
