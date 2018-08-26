@@ -120,6 +120,8 @@ exports.seed = function(knex, Promise) {
 
   }
 
+
+
   return deleteMenu()
   .then(deleteOrders)
   .then(deleteUsers)

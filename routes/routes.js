@@ -58,6 +58,37 @@ module.exports = (knex) => {
       });
   });
 
+
+  router.post("/owner/addItem", (req, res) => {
+    console.log("POST /roasted/owner/addItem");
+    knex('menu').insert({
+      name: req.body.name,
+      description: req.body.description,
+      type: req.body.type,
+      price: req.body.price ,
+      img_url: req.body.image,
+      order_time_estimate: req.body.estimated_time
+    })
+    .returning('*')
+    .then(item => {
+      let data = {
+        name: item[0].name,
+        description: item[0].description,
+        type: item[0].type,
+        price: item[0].price,
+        order_time_estimate: item[0].order_time_estimate,
+        img_url: item[0].img_url
+      };
+      res.status(200).json(data);
+      console.log("New menu item has been added.");
+    })
+    .catch(err => console.error("Error on inserting menu item (POST /owner/addItem):", err));
+  });
+
+  router.get("/owner/addItem", (req, res) => {
+    res.render("new_item");
+  });
+
   router.post("/order", (req, res) => {
     const customerId = req.session.user_id;
     console.log(req.body);
@@ -77,6 +108,7 @@ module.exports = (knex) => {
             .from('users')
             .where('id', customerId)
             .then((customer) => {
+              console.log()
               let customerText = `Your order has been placed with reference ID: ${orderId}, you have ordered: ${req.body.orders}, your total price is: $${req.body.total_price}`;
               let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
               //sending a text message to the customer, then the owner
@@ -100,19 +132,22 @@ module.exports = (knex) => {
   router.post("/login", (req, res) => {
     console.log("I'm in post login")
     console.log("req.body.email:", req.body.email);
-    knex.select('id')
+    knex.select('id', 'type')
       .from('users')
       .where('name', req.body.email)
-      .then(customer => {
-        if (customer.length === 0) {
-          console.log('in if statement or something like that')
+      .then(user => {
+        if(user.length === 0){
           res.sendStatus(401);
+        } else if(user[0].type === 'customer'){
+          req.session.user_id = user[0].id;
+          res.send(200, {
+            redirect: "/roasted/menu"});
+        } else {
+          console.log(user[0].type)
+          req.session.user_id = user[0].id;
+          res.send(200, {
+            redirect: "/roasted/owner"});
         }
-        console.log(customer[0].id);
-        req.session.user_id = customer[0].id;
-        res.send(200, {
-          redirect: "/roasted/menu"
-        });
       })
       .catch(err => console.log('Error on logging in:', err));
   });
@@ -180,7 +215,15 @@ module.exports = (knex) => {
         }
       });
   });
+
+  router.post('/logout', (req, res) =>{
+    req.session = null;
+    res.send(200, {
+      redirect: '/roasted'
+    });
+  });
   return router;
+
 };
 /* knex('orders').insert({
   customer_id: customerId,
