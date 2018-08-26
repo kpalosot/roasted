@@ -1,4 +1,6 @@
 .nav-bar {
+  display: grid;
+  grid-auto-flow: column;
   background-color: black;
   position: fixed;
   top: 0;
@@ -7,6 +9,18 @@
   .nav-bar__logo {
     height: 125px;
     cursor: pointer; }
+  .nav-bar #owner-login-btn {
+    width: 20%;
+    height: 50px;
+    justify-self: right;
+    border-radius: 5px;
+    box-shadow: 10px 10px 8px #434242;
+    font-size: 1.5em;
+    margin-top: 3em;
+    margin-right: 7em; }
+  .nav-bar #owner-login-btn:hover {
+    background-color: #171414;
+    color: white; }
 
 * {
   margin: 0;
@@ -70,32 +84,29 @@ html {
   font-size: 1.6rem; }
 
 .button {
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  padding: 1rem;
+  background-color: #ff8355;
+  border-radius: 1.5rem;
+  color: white; }
   .button__add {
-    background-color: #ff8355;
     justify-self: end;
     display: flex;
     align-items: center;
-    padding: 1.5rem;
     text-align: center;
-    color: white;
-    border-radius: 1.5rem;
     text-transform: uppercase; }
-    .button__add:hover {
-      cursor: pointer;
-      background-color: #ff4500; }
   .button__checkout {
     font-size: 1.6rem; }
     .button__checkout:hover {
       cursor: pointer; }
   .button__placeOrder {
-    padding: 1rem;
-    background-color: #ff8355;
-    color: white;
+    text-transform: uppercase;
+    border-radius: 0rem; }
+  .button:hover {
+    cursor: pointer;
+    background-color: #ff4500; }
+  .button__closeOrder {
     text-transform: uppercase; }
-    .button__placeOrder:hover {
-      cursor: pointer;
-      background-color: #ff4500; }
 
 .section__checkout {
   position: fixed;
@@ -206,7 +217,7 @@ body {
     font-size: 1.5em; }
 
 #login-btn:hover, #order-btn:hover {
-  background-color: #171414cb;
+  background-color: #171414;
   color: white; }
 
 .banner {
@@ -252,13 +263,13 @@ h1 {
 .reviews-section {
   z-index: 1000; }
 
-.modal {
+#login-section, #register-section {
   visibility: hidden;
   position: fixed;
   overflow: auto;
   width: 50%;
   background-color: #434242;
-  top: 40%;
+  top: 30%;
   left: 25%;
   opacity: 0.90;
   border-radius: 1.5em; }
@@ -268,18 +279,19 @@ h1 {
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #434242;
   float: right;
-  font-size: 28px;
-  font-weight: bold; }
+  font-size: 36px;
+  font-weight: bold;
+  margin-right: 5px; }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #cb1a1a;
   text-decoration: none;
   cursor: pointer; }
 
-.modal-content {
+.login-content, .register-content {
   padding: 10px;
   height: 95%; }
 
@@ -291,6 +303,8 @@ form {
   margin: auto;
   padding: 1em;
   font-size: 1.5em; }
+  form div {
+    padding-top: .5em; }
 
 form input {
   margin-bottom: 1rem;
@@ -314,6 +328,13 @@ input {
   width: 100%;
   padding: 0.7em;
   margin-bottom: 0.5rem; }
+
+.err-msg {
+  display: none;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #c66868;
+  border-radius: 5px; }
 
 main.new_item_container {
   display: grid;
@@ -347,3 +368,41 @@ div.new_item_attributes {
 
 form.new_item_info input {
   text-align: left; }
+
+.section__orders {
+  display: grid;
+  justify-content: center;
+  margin-top: 15rem; }
+
+.orders__item {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  margin-bottom: 2rem;
+  box-shadow: .5rem .5rem .8rem .3rem #888888;
+  text-align: center; }
+
+.orders__header {
+  color: white;
+  background-color: orangered;
+  padding: 1rem;
+  transition: all .2s; }
+  .orders__header:hover {
+    cursor: pointer;
+    background-color: #ff8355; }
+
+.orders__body {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  padding: 1rem; }
+
+.orders__timelapse {
+  font-size: 10rem; }
+
+.orders__email {
+  padding: 1rem;
+  font-size: 1.5rem; }
+
+.orders__specialInstructions--item {
+  font-size: 1.6rem;
+  padding: 1rem;
+  list-style: none; }

@@ -1,19 +1,15 @@
 .button {
   font-size: 1.6rem;
+  padding: 1rem;
+  background-color: #ff8355;
+  border-radius: 1.5rem;
+  color: white;
   &__add {
-    background-color: #ff8355;
     justify-self: end;
     display: flex;
     align-items: center;
-    padding: 1.5rem;
     text-align: center;
-    color: white;
-    border-radius: 1.5rem;
     text-transform: uppercase;
-    &:hover {
-      cursor: pointer;
-      background-color: #ff4500;
-    }
   }
   &__checkout {
     font-size: 1.6rem;
@@ -24,13 +20,14 @@
     &--minus {}
   }
   &__placeOrder {
-    padding: 1rem;
-    background-color: #ff8355;
-    color: white;
     text-transform: uppercase;
-    &:hover {
-      cursor: pointer;
-      background-color: #ff4500;
-    }
+    border-radius: 0rem;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #ff4500;
+  }
+  &__closeOrder {
+    text-transform: uppercase;
   }
 }

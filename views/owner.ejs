@@ -5,27 +5,36 @@
   <title>Roasted</title>
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/orders.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
   <% include partials/_header.ejs %>
     <section class="section__orders">
-
+      <ul class="orders__list">
+        <h2 class="header-secondary">Orders</h2>
+        <% for (var id in orders) { %>
+          <li class="orders__item">
+            <h3 class="orders__header header-tertiary">Order #
+              <%= Number(id) + 1%>
+            </h3>
+            <div class="orders__body">
+              <div class="orders__timelapse" data-estimated_time="<%= orders[id].estimated_time %>" data-created_at="<%= orders[id].created_at %>">30:00</div>
+              <div class="orders__email">
+                <%= orders[id].name %>
+              </div>
+              <ul class="orders__specialInstructions">
+                <li class="orders__specialInstructions--item">No Pickles</li>
+              </ul>
+              <div class="orders__closeBtn button__closeOrder button" data-order_id="<%= orders[id].id %>">Close Order</div>
+            </div>
+          </li>
+          <% }; %>
+      </ul>
     </section>
 </body>
 
 </html>
-
-
-<!-- <article class="order">
-  <header>Order: XX</header>
-  <div class="order-body">
-    <p class="customer-container">Customer: user1@example.com</p>
-    <p class="customer-timer">Timer: OO:OO</p>
-    <button>Finish</button>
-  </div>
-</article> -->
