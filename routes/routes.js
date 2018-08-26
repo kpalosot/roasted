@@ -117,19 +117,22 @@ module.exports = (knex) => {
   });
 
   router.post("/login", (req, res) => {
+    console.log("I'm in post login")
     console.log("req.body.email:", req.body.email);
     knex.select('id')
       .from('customers')
       .where('name', req.body.email)
       .then(customer => {
         if(customer.length === 0){
-          res.json({error: "User is not registered."});
+          console.log('in if statement or something like that')
+          res.sendStatus(401);
         }
-        req.session.customer_id = customer[0].id;
-        res.redirect("/roasted/menu");
+        console.log(customer[0].id);
+        req.session.customer_id = customer[0].id;     
+        res.send(200, {
+          redirect: "/roasted/menu"});
       })
       .catch(err => console.log('Error on logging in:', err));
-
   });
 
   //Delete order from database
