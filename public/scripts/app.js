@@ -168,8 +168,6 @@ $(document).ready(function () {
     //Do code for showing the number of seconds here
   }
 
-
-
   //Initial State
   //All orders__body hidden
   //only visible after clicked
@@ -178,15 +176,6 @@ $(document).ready(function () {
   //Toggle orders__body content
   //Only one is visible at a time
   $(".orders__header").on("click", function () {
-    //let created_at = $(this).siblings().children(".orders__timelapse").data("created_at").slice(0, 8);
-    /*  let created_at = '15:40:49.555'.slice(0, 8);
-     let estimated_time = $(this).siblings().children(".orders__timelapse").data("estimated_time");
-     var now = new Date(Date.now());
-     var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-
-     let timeLeft = Math.abs(formatted - created_at); */
-
-    /*     console.log(created_at, estimated_time, formatted, timeLeft); */
 
     var countDownDate = new Date("Aug 25, 2019 17:40:49").getTime();
     console.log(countDownDate);
@@ -204,8 +193,8 @@ $(document).ready(function () {
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      console.log("this is,");
-      console.log($(this));
+      //console.log("this is,");
+      //console.log($(this));
       // Display the result in the element with id="demo"
       $(".orders__timelapse").text(hours + ": " +
         minutes + ": " + seconds + "s ");
@@ -216,8 +205,6 @@ $(document).ready(function () {
         document.getElementById("demo").innerHTML = "EXPIRED";
       }
     }, 1000);
-    /*     $(this).siblings().children(".orders__timelapse").text(setInterval(timer, 1000)); //1000 will  run it every 1 second */
-
 
     $(this).siblings().toggle("fast");
     $(this).parent().siblings().each(function () {
@@ -229,4 +216,26 @@ $(document).ready(function () {
       }
     });
   });
+
+  //Delete Order from Database
+  $('.button__closeOrder').on('click', function () {
+    let order_id = $(this).data("order_id");
+
+    $.ajax({
+      url: '/roasted/owner',
+      type: 'DELETE',
+      data: {
+        order_id: order_id
+      } // <---update this
+
+    }).then((response) => {
+      console.log(response);
+
+      if (response) {
+        console.log("this button's this is, ", $(this));
+        $(this).parent().parent().remove();
+      }
+    });
+  });
+
 });

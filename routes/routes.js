@@ -38,15 +38,35 @@ module.exports = (knex) => {
       });
   });
 
+  //GET
+  //Route:"/owner"
+  //Description: Render orders.ejs
   router.get("/owner", (req, res) => {
     console.log("SEINDING OWNER PAGE");
 
+    /*    knex
+         .select('*')
+         .from('orders')
+         .leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
+         .then(function (orders) {
+           console.log('1. get /owner, data is:', orders);
+           console.log('1. get /owner, data keys are:', Object.keys(orders));
+           let templateVars = {
+             orders
+           };
+           res.render('orders', templateVars);
+
+         }).catch(function (error) {
+           console.error(error);
+         }); */
+
     knex
       .select('*')
-      .from('orders')
-      .leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
+      .from('customers')
+      .leftJoin('orders', 'orders.customer_id', '=', 'customers.id')
       .then(function (orders) {
-        console.log('get /owner, data is:', orders);
+        console.log('2. get /owner, data is:', orders);
+        console.log('2. get /owner, data keys are:', Object.keys(orders));
         let templateVars = {
           orders
         };
@@ -55,15 +75,15 @@ module.exports = (knex) => {
       }).catch(function (error) {
         console.error(error);
       });
-
-
   });
 
   router.post("/order", (req, res) => {
     const customerId = req.session.customer_id;
     console.log(req.body);
+    console.log(req.session.customer_id);
     // inserting order info to db
-    if (req.body.orders) {
+    if (req.body.orders && customerId !== undefined) {
+      console.log("real order placed.");
       knex('orders').insert({
           customer_id: customerId,
           estimated_time: req.body.estimated_time
@@ -109,5 +129,20 @@ module.exports = (knex) => {
 
   });
 
+  //Delete order from database
+  router.delete("/owner", (req, res) => {
+    console.log("I am on the DELETE /owner route.");
+
+    let order_id = req.body.order_id;
+    console.log("order_id is,", order_id);
+
+    knex('orders')
+      .where({
+        id: order_id
+      })
+      .del().then(() => {
+        res.send("order deleted.");
+      });
+  });
   return router;
 };
