@@ -364,7 +364,8 @@ input {
   padding: 1rem; }
 
 .orders__timelapse {
-  font-size: 10rem; }
+  font-size: 10rem;
+  color: #49c816; }
 
 .orders__email {
   padding: 1rem;

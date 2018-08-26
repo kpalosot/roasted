@@ -201,10 +201,14 @@ $(document).ready(function () {
 
       // If the count down is finished, write some text 
       if (distance < 0) {
-        clearInterval(x);
-        current.siblings(".orders__body").children(".orders__timelapse").text = "EXPIRED";
+        //clearInterval(x);
+        current.siblings(".orders__body").children(".orders__timelapse").text(Math.abs(minutes + 1) + ":" + Math.abs(seconds).toLocaleString(undefined, {
+          minimumIntegerDigits: 2
+        }));
+        current.siblings(".orders__body").children(".orders__timelapse").css("color", "#dd352f");
+        current.css("background-color", "black");
       }
-    }.bind(current), 1000);
+    }.bind(current), 1);
 
     $(this).siblings().toggle("fast");
     $(this).parent().siblings().each(function () {
