@@ -38,10 +38,10 @@ $(document).ready(function(){
         },
       error: function() {
         $('.err-msg').slideDown();
-      }, 
+      },
       success: function(data) {
         window.location.href = data.redirect;
-      } 
+      }
     });
   });
 
@@ -55,7 +55,7 @@ $(document).ready(function(){
       data: {
         email: $registerEmail,
         phone_num: $phone
-      }, 
+      },
       error: function () {
         $(".err-register").slideDown();
       },
@@ -63,6 +63,16 @@ $(document).ready(function(){
         window.location.href = data.redirect;
       }
     });
+  });
+
+  $('#logout-button').click(function(){
+    $.ajax('/roasted/logout', {
+      method: 'POST',
+      success: function(data){
+        window.location.href = data.redirect;
+      }
+    });
+
   });
 
 
