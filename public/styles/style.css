@@ -338,7 +338,7 @@ div.new_item_summary_container {
   grid-column: 3;
   grid-row: 2;
   display: none;
-  width: 75rem; }
+  width: 100%; }
   div.new_item_summary_container h1 {
     color: black; }
 
