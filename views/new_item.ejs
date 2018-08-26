@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roasted</title>
+  <!-- Google fonts - raleway -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/new_item.js"></script>
+
+</head>
+<body>
+  <% include partials/_header%>
+  <main class="new_item_container">
+    <div class="form_container">
+      <form class="new_item_info">
+        <label>Item:</label>
+        <input id="item_name" type="text" name="name" value="Roasted" required>
+        <label>Description:</label>
+        <input id="item_description" class="item_description" type="text" name="description" required>
+        <label>Type:</label>
+        <input id="item_type" type="text" name="type" required>
+        <label>Price:</label>
+        <input id="item_price" type="number" name="price" min="0" step="0.01" required>
+        <label>Estimated Preparation Time:</label>
+        <input id="item_estimated_time" type="number" name="estimated_time" min="0" step="1" required>
+        <label>Image:</label>
+        <input id="item_image" type="url" name="img_url" required>
+        <input class="new_item_button" type="submit" value="Add New Item">
+      </form>
+    </div>
+
+    <div class="new_item_summary_container">
+      <h1 class="new_item_header">Your new added item summary:</h1>
+      <div class="new_item_attributes">
+        <p class="new_item_designator">Name:</p>
+        <p id="show_name"></p>
+      </div>
+      <div class="new_item_attributes">
+        <p class="new_item_designator">Description:</p>
+        <p id="show_description"></p>
+      </div>
+      <div class="new_item_attributes">
+        <p class="new_item_designator">Type:</p>
+        <p id="show_type"></p>
+      </div>
+      <div class="new_item_attributes">
+        <p class="new_item_designator">Price:</p>
+        <p id="show_price"></p>
+      </div>
+      <div class="new_item_attributes">
+        <p class="new_item_designator">Time:</p>
+        <p id="show_time"></p>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

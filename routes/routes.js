@@ -43,6 +43,37 @@ module.exports = (knex) => {
     res.render("orders");
   });
 
+
+  router.post("/owner/addItem", (req, res) => {
+    console.log("POST /roasted/owner/addItem");
+    knex('menu').insert({
+      name: req.body.name,
+      description: req.body.description,
+      type: req.body.type,
+      price: req.body.price ,
+      img_url: req.body.image,
+      order_time_estimate: req.body.estimated_time
+    })
+    .returning('*')
+    .then(item => {
+      let data = {
+        name: item[0].name,
+        description: item[0].description,
+        type: item[0].type,
+        price: item[0].price,
+        order_time_estimate: item[0].order_time_estimate,
+        img_url: item[0].img_url
+      };
+      res.status(200).json(data);
+      console.log("New menu item has been added.");
+    })
+    .catch(err => console.error("Error on inserting menu item (POST /owner/addItem):", err));
+  });
+
+  router.get("/owner/addItem", (req, res) => {
+    res.render("new_item");
+  });
+
   router.post("/order", (req, res) => {
     const customerId =  req.session.customer_id;
     console.log(req.body);
@@ -94,4 +125,5 @@ module.exports = (knex) => {
   });
 
   return router;
+
 };
