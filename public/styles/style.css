@@ -20,7 +20,8 @@
     margin-right: 7em; }
   .nav-bar #owner-login-btn:hover {
     background-color: #171414cb;
-    color: white; }
+    color: white;
+    cursor: pointer; }
 
 * {
   margin: 0;
