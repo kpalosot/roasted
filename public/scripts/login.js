@@ -38,11 +38,21 @@ $(document).ready(function(){
         },
       error: function() {
         $('.err-msg').slideDown();
-      }, 
+      },
       success: function(data) {
         window.location.href = data.redirect;
-      } 
+      }
     });
+  });
+
+  $('#logout-button').click(function(){
+    $.ajax('/roasted/logout', {
+      method: 'POST',
+      success: function(data){
+        window.location.href = data.redirect;
+      }
+    });
+
   });
 
 

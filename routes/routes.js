@@ -89,9 +89,9 @@ module.exports = (knex) => {
   });
 
   router.post("/order", (req, res) => {
-    const customerId = req.session.customer_id;
+    const customerId = req.session.user_id;
     console.log(req.body);
-    console.log(req.session.customer_id);
+    console.log(req.session.user_id);
     // inserting order info to db
     if (req.body.orders && customerId !== undefined) {
       console.log("real order placed.");
@@ -107,6 +107,7 @@ module.exports = (knex) => {
             .from('users')
             .where('id', customerId)
             .then((customer) => {
+              console.log()
               let customerText = `Your order has been placed with reference ID: ${orderId}, you have ordered: ${req.body.orders}, your total price is: $${req.body.total_price}`;
               let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
               //sending a text message to the customer, then the owner
@@ -130,18 +131,23 @@ module.exports = (knex) => {
   router.post("/login", (req, res) => {
     console.log("I'm in post login")
     console.log("req.body.email:", req.body.email);
-    knex.select('id')
+    knex.select('id', 'type')
       .from('users')
       .where('name', req.body.email)
-      .then(customer => {
-        if(customer.length === 0){
-          console.log('in if statement or something like that')
+      .then(user => {
+        if(user.length === 0){
           res.sendStatus(401);
+        } else if(user[0].type === 'customer'){
+          req.session.user_id = user[0].id;
+          res.send(200, {
+            redirect: "/roasted/menu"});
+        } else {
+          console.log(user[0].type)
+          req.session.user_id = user[0].id;
+          res.send(200, {
+            redirect: "/roasted/owner"});
         }
-        console.log(customer[0].id);
-        req.session.customer_id = customer[0].id;
-        res.send(200, {
-          redirect: "/roasted/menu"});
+
       })
       .catch(err => console.log('Error on logging in:', err));
   });
@@ -160,6 +166,13 @@ module.exports = (knex) => {
       .del().then(() => {
         res.send("order deleted.");
       });
+  });
+
+  router.post('/logout', (req, res) =>{
+    req.session = null;
+    res.send(200, {
+      redirect: '/roasted'
+    });
   });
   return router;
 

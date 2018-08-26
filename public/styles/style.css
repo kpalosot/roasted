@@ -9,18 +9,13 @@
   .nav-bar__logo {
     height: 125px;
     cursor: pointer; }
-  .nav-bar #owner-login-btn {
-    width: 20%;
-    height: 50px;
+  .nav-bar .logout-icon {
     justify-self: right;
-    border-radius: 5px;
-    box-shadow: 10px 10px 8px #434242;
-    font-size: 1.5em;
     margin-top: 3em;
-    margin-right: 7em; }
-  .nav-bar #owner-login-btn:hover {
-    background-color: #171414;
+    margin-right: 7em;
     color: white; }
+  .nav-bar .fa-sign-out-alt:before {
+    font-family: "Font Awesome 5 Free"; }
 
 * {
   margin: 0;
