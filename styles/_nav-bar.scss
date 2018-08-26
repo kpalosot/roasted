@@ -12,12 +12,34 @@
   }
   .logout-icon {
     justify-self: right;
-    margin-top: 3em;
-    margin-right: 7em;
-    color:white;
+    font-size: 4rem;
+    margin-right: 8rem;
+    color: white;
+    align-self: center;
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
   }
-
+  .addItem-icon {
+    justify-self: right;
+    font-size: 4rem;
+    margin-right: 4rem;
+    color: white;
+    align-self: center;
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
+    &:before {
+      font-family: "Font Awesome 5 Free";
+    }
+  }
   .fa-sign-out-alt:before {
     font-family: "Font Awesome 5 Free";
+  }
+  &__icons {
+    justify-self: right;
+    align-self: center;
   }
 }

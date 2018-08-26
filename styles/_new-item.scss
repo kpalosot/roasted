@@ -5,17 +5,20 @@ main.new_item_container {
   grid-column-gap: 1.5rem;
 }
 
-div.form_container{
+div.form_container {
   grid-row: 2;
   grid-column: 2;
 }
 
-
-input.new_item_button{
+input.new_item_button {
   width: 30rem;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-div.new_item_summary_container{
+div.new_item_summary_container {
   background: #DFF2BF;
   border: 1px solid #c1c1c1;
   border-radius: 1.5em;
@@ -26,21 +29,17 @@ div.new_item_summary_container{
   grid-row: 2;
   display: none;
   width: 100%;
-
-  h1{
+  h1 {
     color: black;
   }
-
 }
 
-div.new_item_attributes{
+div.new_item_attributes {
   padding-bottom: 1.5rem;
 }
 
-
-form.new_item_info{
-  input{
+form.new_item_info {
+  input {
     text-align: left;
   }
-
 }
