@@ -19,10 +19,11 @@
         <% for (var id in orders) { %>
           <li class="orders__item">
             <h3 class="orders__header header-tertiary">Order #
-              <%= Number(id) + 1%>
+              <%=orders[id].id%>
             </h3>
             <div class="orders__body">
-              <div class="orders__timelapse" data-estimated_time="<%= orders[id].estimated_time %>" data-created_at="<%= orders[id].created_at %>">30:00</div>
+              <div class="orders__timelapse" data-estimated_time="<%= orders[id].estimated_time %>" data-ordered_at="<%= orders[id].ordered_at %>"
+                data-order_id="<%= orders[id].id %>"></div>
               <div class="orders__email">
                 <%= orders[id].name %>
               </div>

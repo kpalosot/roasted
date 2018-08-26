@@ -47,6 +47,7 @@ module.exports = (knex) => {
       .from('users')
       .join('orders', 'orders.customer_id', '=', 'users.id')
       .then(function (orders) {
+
         let templateVars = {
           orders
         };
@@ -108,7 +109,7 @@ module.exports = (knex) => {
           res.sendStatus(401);
         }
         console.log(customer[0].id);
-        req.session.customer_id = customer[0].id;
+        req.session.user_id = customer[0].id;
         res.send(200, {
           redirect: "/roasted/menu"
         });
@@ -124,12 +125,29 @@ module.exports = (knex) => {
     console.log("order_id is,", order_id);
 
     knex('orders')
-      .where({
-        id: order_id
-      })
-      .del().then(() => {
-        res.send("order deleted.");
+      .join('users', 'users.id', '=', 'customer_id')
+      .select('*')
+      .where('orders.id', order_id)
+      .then((customer) => {
+        client.messages.create({
+          body: `Your Order #${order_id} is ready to pick up. #Roasted`,
+          from: twilioNumber,
+          to: customer[0].phone_num
+        }).catch("Sending customer text message failed.");
+      }).catch(error => {
+        console.error(error);
+      }).then(() => {
+        knex('orders')
+          .where({
+            id: order_id
+          })
+          .del().then(() => {
+            res.send("order deleted.");
+          }).catch((error) => {
+            console.error(error);
+          });
       });
+
   });
 
   router.post('/register', (req, res) => {
@@ -164,3 +182,31 @@ module.exports = (knex) => {
   });
   return router;
 };
+/* knex('orders').insert({
+  customer_id: customerId,
+  estimated_time: req.body.estimated_time
+})
+.returning('id')
+.catch(err => console.error("Error on order insertion to orders table:", err))
+.then((orderId) => {
+  // getting customer's phone number and name from the database
+  knex.select('phone_num', 'name')
+    .from('users')
+    .where('id', customerId)
+    .then((customer) => {
+      let customerText = `Your order has been placed with reference ID: ${orderId}, you have ordered: ${req.body.orders}, your total price is: $${req.body.total_price}`;
+      let cookText = `An order has been placed by ${customer[0].name} with reference ID ${orderId}. ${req.body.orders}`;
+      //sending a text message to the customer, then the owner
+      client.messages.create({
+        body: customerText,
+        from: twilioNumber,
+        to: customer[0].phone_num
+      }).catch("Sending customer text message failed.");
+      client.messages.create({
+        body: cookText,
+        from: twilioNumber,
+        to: ownerNumber
+      }).catch("Sending owner text message failed.");
+    })
+    .catch(err => console.error("Error on notifying customer/owner:", err))
+}); */

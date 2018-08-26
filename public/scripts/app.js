@@ -176,39 +176,43 @@ $(document).ready(function () {
   //Toggle orders__body content
   //Only one is visible at a time
   $(".orders__header").on("click", function () {
+    let current = $(this);
+    let order_id = $(this).siblings().children(".orders__timelapse").data("order_id");
+    console.log(`outside, ${order_id}`);
+    var estimated_time = $(this).siblings().children(".orders__timelapse").data("estimated_time") * 60 * 1000;
+    var countDownDate = new Date($(this).siblings().children(".orders__timelapse").data("ordered_at")).getTime() + estimated_time;
 
-    var countDownDate = new Date("Aug 25, 2019 17:40:49").getTime();
-    console.log(countDownDate);
     // Update the count down every 1 second
     var x = setInterval(function () {
-
       // Get todays date and time
       var now = new Date().getTime();
 
       // Find the distance between now and the count down date
       var distance = countDownDate - now;
-
       // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      //console.log("this is,");
-      //console.log($(this));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000).toLocaleString(undefined, {
+        minimumIntegerDigits: 2
+      });
+
       // Display the result in the element with id="demo"
-      $(".orders__timelapse").text(hours + ": " +
-        minutes + ": " + seconds + "s ");
+      current.siblings(".orders__body").children(".orders__timelapse").text(minutes + ":" + seconds);
 
       // If the count down is finished, write some text 
       if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        //clearInterval(x);
+        current.siblings(".orders__body").children(".orders__timelapse").text(Math.abs(minutes + 1) + ":" + Math.abs(seconds).toLocaleString(undefined, {
+          minimumIntegerDigits: 2
+        }));
+        current.siblings(".orders__body").children(".orders__timelapse").css("color", "#dd352f");
+        current.css("background-color", "black");
       }
-    }, 1000);
+    }.bind(current), 1);
 
     $(this).siblings().toggle("fast");
     $(this).parent().siblings().each(function () {
-      console.log($(this));
+
       var displayCheck = $(this).children(".orders__body").css('display') === 'none' ? true : false;
 
       if (!displayCheck) {

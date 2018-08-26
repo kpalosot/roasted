@@ -20,7 +20,8 @@
     margin-right: 7em; }
   .nav-bar #owner-login-btn:hover {
     background-color: #171414cb;
-    color: white; }
+    color: white;
+    cursor: pointer; }
 
 * {
   margin: 0;
@@ -363,7 +364,8 @@ input {
   padding: 1rem; }
 
 .orders__timelapse {
-  font-size: 10rem; }
+  font-size: 10rem;
+  color: #49c816; }
 
 .orders__email {
   padding: 1rem;
