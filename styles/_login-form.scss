@@ -1,10 +1,11 @@
-.modal {
+// Login and sign-up forms
+#login-section, #register-section {
     visibility: hidden;
     position: fixed;
     overflow: auto;
     width: 50%;
     background-color: #434242;
-    top: 40%;
+    top: 30%;
     left: 25%;
     opacity: 0.90;
     border-radius: 1.5em;
@@ -15,21 +16,22 @@
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #434242;
   float: right;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: bold;
+  margin-right: 5px;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #cb1a1a;
     text-decoration: none;
     cursor: pointer;
 }
 
 
-.modal-content {
+.login-content, .register-content {
   padding: 10px;
   height: 95%;
 
@@ -41,11 +43,11 @@ form {
   border: 1px solid #c1c1c1;
   border-radius: 1.5em;
   margin: auto;
-  // max-width: 600px;
-  // margin-left: auto;
-  // margin-right: auto;
   padding: 1em;
   font-size: 1.5em;
+  div {
+    padding-top: .5em;
+  }
 
 }
 form input {
@@ -74,23 +76,10 @@ input {
   margin-bottom: 0.5rem;
 }
 
-// @media (min-width: 400px) {
-//   form {
-//     overflow: hidden;
-//   }
-
-//   label {
-//     float: left;
-//     width: 200px;
-//   }
-
-//   input {
-//     float: left;
-//     width: calc(100% - 200px);
-//   }
-
-//   button {
-//     float: right;
-//     width: calc(100% - 200px);
-//   }
-// }
+.err-msg {
+  display: none;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgb(198, 104, 104);
+  border-radius: 5px;
+}

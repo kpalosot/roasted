@@ -9,8 +9,8 @@ exports.seed = function(knex, Promise) {
     return knex('orders').del();
   }
 
-  function deleteCustomers(){
-    return knex('customers').del();
+  function deleteUsers(){
+    return knex('users').del();
   }
 
   function insertMenu(){
@@ -57,11 +57,12 @@ exports.seed = function(knex, Promise) {
       ]);
   }
 
-  function insertCustomers(){
-    return knex('customers').insert([
-      {name: 'user1@example.com', phone_num: '6476378072'},
-      {name: 'user2@example.com', phone_num: '9055999119'},
-      {name: 'user3@example.com', phone_num: '9052518621'}
+  function insertUsers(){
+    return knex('users').insert([
+      {name: 'user1@example.com', phone_num: '6476378072', type: 'customer'},
+      {name: 'user2@example.com', phone_num: '9055999119', type: 'customer'},
+      {name: 'user3@example.com', phone_num: '9052518621', type: 'customer'},
+      {name: 'owner@example.com', phone_num: '6476378072', type: 'owner'}
       ]).returning('*');
   }
 
@@ -83,42 +84,46 @@ exports.seed = function(knex, Promise) {
 
   function insertOrders(customers){
     // simulating different order times
-    const orderTime1 = getAlteredTime(20);
-    const orderTime2 = getAlteredTime(15);
-    const orderTime3 = getAlteredTime(11);
-    const orderTime4 = getAlteredTime(9);
-    const orderTime5 = getAlteredTime();
+    // const orderTime1 = getAlteredTime(20);
+    // const orderTime2 = getAlteredTime(15);
+    // const orderTime3 = getAlteredTime(11);
+    // const orderTime4 = getAlteredTime(9);
+    // const orderTime5 = getAlteredTime();
 
     // simulating different customers within the table
-    const customer1 = randomCustomer();
-    const customer2 = randomCustomer();
-    const customer3 = randomCustomer();
-    const customer4 = randomCustomer();
-    const customer5 = randomCustomer();
+    // const customer1 = randomCustomer();
+    // const customer2 = randomCustomer();
+    // const customer3 = randomCustomer();
+    // const customer4 = randomCustomer();
+    // const customer5 = randomCustomer();
 
-    return knex('orders').insert([
-      { customer_id: customers[customer1].id,
-        created_at: orderTime1, estimated_time: 33},
+    // return knex('orders').insert([
+    //   { customer_id: customers[customer1].id,
+    //     created_at: orderTime1, estimated_time: 33},
 
-      { customer_id: customers[customer2].id,
-        created_at: orderTime2, estimated_time: 12},
+    //   { customer_id: customers[customer2].id,
+    //     created_at: orderTime2, estimated_time: 12},
 
-      { customer_id: customers[customer3].id,
-        created_at: orderTime3, estimated_time: 28},
+    //   { customer_id: customers[customer3].id,
+    //     created_at: orderTime3, estimated_time: 28},
 
-      { customer_id: customers[customer4].id,
-        created_at: orderTime4, estimated_time: 24},
+    //   { customer_id: customers[customer4].id,
+    //     created_at: orderTime4, estimated_time: 24},
 
-      { customer_id: customers[customer5].id,
-        created_at: orderTime5, estimated_time: 26}
-      ]);
+    //   { customer_id: customers[customer5].id,
+    //     created_at: orderTime5, estimated_time: 26}
+    //   ]);
+    return knex('orders').insert({
+      customer_id: customers[0].id,
+      estimated_time: 12
+    });
 
   }
 
   return deleteMenu()
   .then(deleteOrders)
-  .then(deleteCustomers)
+  .then(deleteUsers)
   .then(insertMenu)
-  .then(insertCustomers)
+  .then(insertUsers)
   .then(customers => insertOrders(customers));
 };

@@ -42,31 +42,11 @@ module.exports = (knex) => {
   //Route:"/owner"
   //Description: Render orders.ejs
   router.get("/owner", (req, res) => {
-    console.log("SEINDING OWNER PAGE");
-
-    /*    knex
-         .select('*')
-         .from('orders')
-         .leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
-         .then(function (orders) {
-           console.log('1. get /owner, data is:', orders);
-           console.log('1. get /owner, data keys are:', Object.keys(orders));
-           let templateVars = {
-             orders
-           };
-           res.render('orders', templateVars);
-
-         }).catch(function (error) {
-           console.error(error);
-         }); */
-
     knex
       .select('*')
-      .from('customers')
-      .join('orders', 'orders.customer_id', '=', 'customers.id')
+      .from('users')
+      .join('orders', 'orders.customer_id', '=', 'users.id')
       .then(function (orders) {
-        console.log('2. get /owner, data is:', orders);
-        console.log('2. get /owner, data keys are:', Object.keys(orders));
         let templateVars = {
           orders
         };
@@ -93,7 +73,7 @@ module.exports = (knex) => {
         .then((orderId) => {
           // getting customer's phone number and name from the database
           knex.select('phone_num', 'name')
-            .from('customers')
+            .from('users')
             .where('id', customerId)
             .then((customer) => {
               let customerText = `Your order has been placed with reference ID: ${orderId}, you have ordered: ${req.body.orders}, your total price is: $${req.body.total_price}`;
@@ -117,16 +97,22 @@ module.exports = (knex) => {
   });
 
   router.post("/login", (req, res) => {
+    console.log("I'm in post login")
     console.log("req.body.email:", req.body.email);
     knex.select('id')
-      .from('customers')
+      .from('users')
       .where('name', req.body.email)
       .then(customer => {
+        if(customer.length === 0){
+          console.log('in if statement or something like that')
+          res.sendStatus(401);
+        }
+        console.log(customer[0].id);
         req.session.customer_id = customer[0].id;
-        res.redirect("/roasted/menu");
+        res.send(200, {
+          redirect: "/roasted/menu"});
       })
       .catch(err => console.log('Error on logging in:', err));
-
   });
 
   //Delete order from database
