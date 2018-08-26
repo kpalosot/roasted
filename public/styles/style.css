@@ -70,32 +70,29 @@ html {
   font-size: 1.6rem; }
 
 .button {
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  padding: 1rem;
+  background-color: #ff8355;
+  border-radius: 1.5rem;
+  color: white; }
   .button__add {
-    background-color: #ff8355;
     justify-self: end;
     display: flex;
     align-items: center;
-    padding: 1.5rem;
     text-align: center;
-    color: white;
-    border-radius: 1.5rem;
     text-transform: uppercase; }
-    .button__add:hover {
-      cursor: pointer;
-      background-color: #ff4500; }
   .button__checkout {
     font-size: 1.6rem; }
     .button__checkout:hover {
       cursor: pointer; }
   .button__placeOrder {
-    padding: 1rem;
-    background-color: #ff8355;
-    color: white;
+    text-transform: uppercase;
+    border-radius: 0rem; }
+  .button:hover {
+    cursor: pointer;
+    background-color: #ff4500; }
+  .button__closeOrder {
     text-transform: uppercase; }
-    .button__placeOrder:hover {
-      cursor: pointer;
-      background-color: #ff4500; }
 
 .section__checkout {
   position: fixed;
@@ -321,3 +318,41 @@ input {
   padding: 10px;
   background-color: #c66868;
   border-radius: 5px; }
+
+.section__orders {
+  display: grid;
+  justify-content: center;
+  margin-top: 15rem; }
+
+.orders__item {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  margin-bottom: 2rem;
+  box-shadow: .5rem .5rem .8rem .3rem #888888;
+  text-align: center; }
+
+.orders__header {
+  color: white;
+  background-color: orangered;
+  padding: 1rem;
+  transition: all .2s; }
+  .orders__header:hover {
+    cursor: pointer;
+    background-color: #ff8355; }
+
+.orders__body {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  padding: 1rem; }
+
+.orders__timelapse {
+  font-size: 10rem; }
+
+.orders__email {
+  padding: 1rem;
+  font-size: 1.5rem; }
+
+.orders__specialInstructions--item {
+  font-size: 1.6rem;
+  padding: 1rem;
+  list-style: none; }
