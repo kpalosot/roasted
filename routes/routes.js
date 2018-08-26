@@ -133,23 +133,33 @@ module.exports = (knex) => {
   });
 
   router.post('/register', (req, res) => {
-    knex('users').insert({
-        name: req.body.email,
-        phone_num: req.body.phone_num,
-        type: 'customer'
-      }).returning('*')
-      .then((user) => {
-        req.session.user_id = user[0].id;
-        client.messages.create({
-            body: "Thank you for signing up with Roasted.",
-            from: twilioNumber,
-            to: user[0].phone_num
-          })
-          .then(() => {
-            res.status(200).send({
-              redirect: '/roasted/menu'
+
+    knex('users')
+      .select('*')
+      .where('name', req.body.email)
+      .then(user => {
+        if(user.length > 0){
+          res.sendStatus(401);
+        } else {
+          knex('users').insert({
+              name: req.body.email,
+              phone_num: req.body.phone_num,
+              type: 'customer'
+            }).returning('*')
+            .then((user) => {
+              req.session.user_id = user[0].id;
+              client.messages.create({
+                  body: "Thank you for signing up with Roasted.",
+                  from: twilioNumber,
+                  to: user[0].phone_num
+                })
+                .then(() => {
+                  res.status(200).send({
+                    redirect: '/roasted/menu'
+                  });
+                });
             });
-          });
+        }
       });
   });
   return router;
