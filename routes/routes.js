@@ -63,7 +63,7 @@ module.exports = (knex) => {
     knex
       .select('*')
       .from('customers')
-      .leftJoin('orders', 'orders.customer_id', '=', 'customers.id')
+      .join('orders', 'orders.customer_id', '=', 'customers.id')
       .then(function (orders) {
         console.log('2. get /owner, data is:', orders);
         console.log('2. get /owner, data keys are:', Object.keys(orders));
