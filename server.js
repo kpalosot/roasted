@@ -40,6 +40,10 @@ app.use(bodyParser.urlencoded({
 })); */
 app.use(express.static("public"));
 
+if(process.env.ENV === 'production'){
+  app.use(express.static('client/build'));
+}
+
 app.use(cookieSession({
   keys: ["roasted"]
 }));
