@@ -48,7 +48,7 @@ module.exports = (knex) => {
       .from('users')
       .where('id', req.session.user_id)
       .then(user => {
-        if(user[0].id === 'owner'){
+        if(user[0].type === 'owner'){
           knex
             .select('*')
             .from('users')
