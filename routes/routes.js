@@ -137,9 +137,13 @@ module.exports = (knex) => {
               }).catch("Sending owner text message failed.");
             })
             .catch(err => console.error("Error on notifying customer/owner:", err))
+        })
+        .then(() => {
+          res.sendStatus(200);
         });
+    } else {
+      res.sendStatus(401);
     }
-    res.send("order placed.");
   });
 
   router.post("/login", (req, res) => {

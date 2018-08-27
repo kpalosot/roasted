@@ -18,42 +18,42 @@ exports.seed = function(knex, Promise) {
       { name: 'Roasted Corn', description:'Bacon-wrapped roasted corn with butter and sprinkled with ground pepper.',
         type: 'snack', price: 3.50 ,
         img_url: 'https://hugsandcookiesxoxo.com/wp-content/uploads/2014/02/bacon-roasted-corn.jpg',
-        order_time_estimate: 6},
+        order_time_estimate: 1},
 
       { name: 'Roasted Chicken', description:'Roasted chicken with plain rice on the side, topped with chopped chives',
         type: 'Combo', price: 8.65,
         img_url: 'https://img.taste.com.au/TYwgr6nS/taste/2016/11/tikka-masala-roast-chicken-with-spiced-pilau-rice-85312-1.jpeg',
-        order_time_estimate: 11},
+        order_time_estimate: 2},
 
       { name: 'Roasted Pork Belly', description:'Roasted Pork Belly with plain rice on the side, partnered with in-house special sauce',
         type: 'Combo', price: 9.70,
         img_url: 'https://i.imgur.com/hP0ECqn.jpg',
-        order_time_estimate: 13},
+        order_time_estimate: 2},
 
       { name: 'Chili Roasted Sweet Potatoes', description:'Roasted sweet potatoes seasoned with salt, pepper and chili.',
         type: 'Snack', price: 5,
         img_url: 'https://www.thehungryhutch.com/wp-content/uploads/2018/02/Chili-Roasted-Sweet-Potatoes-Chili-Powder-0.jpg',
-        order_time_estimate: 8},
+        order_time_estimate: 1},
 
       { name: 'Roasted Vegetables', description:'A variety of sliced garden vegetables, roasted and mixed with secret seasoning and topped with some basil.',
         type: 'Combo', price: 4.75,
         img_url: 'https://musicwithdinner.files.wordpress.com/2015/02/roasted-vegetables-and-rice.jpg',
-        order_time_estimate: 9},
+        order_time_estimate: 1},
 
       { name: 'Crab and Sweet Corn Soup', description:'Crab and sweet corn soup with an egg drop, garnished with shredded scalions and bits of chicken.',
         type: 'Snack', price: 6.25,
         img_url: 'http://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/food/2014/11/27/WomansDayBR104628/crab-and-sweet-corn-soup.jpg',
-        order_time_estimate: 4},
+        order_time_estimate: 1},
 
       { name: 'Beer', description:'What else can go well with a roasted meal?',
         type: 'Drink', price: 2.50 ,
         img_url: 'https://s3.scoopwhoop.com/anj/beeeeer/904432527.jpg',
-        order_time_estimate: 2},
+        order_time_estimate: 1},
 
       { name: 'Sangria', description:'If you are feeling fancier than beer.',
         type: 'Drink', price: 8,
         img_url: 'https://hips.hearstapps.com/hmg-prod/images/sangria-horizontal-jpg-1522265291.jpg',
-        order_time_estimate: 4}
+        order_time_estimate: 1}
       ]);
   }
 
@@ -115,7 +115,7 @@ exports.seed = function(knex, Promise) {
     //   ]);
     return knex('orders').insert({
       customer_id: customers[0].id,
-      estimated_time: 12
+      estimated_time: 2
     });
 
   }

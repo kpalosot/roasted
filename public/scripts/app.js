@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
   }
 
-  //at checkout, updates total price 
+  //at checkout, updates total price
   function updateTotalPrice() {
     let totalPrice = 0;
     $(".checkout__item").each(function (index) {
@@ -79,7 +79,7 @@ $(document).ready(function () {
   //------- MENU ---------//
   //////////////////////////
 
-  //"place order" button, adding the order to the 
+  //"place order" button, adding the order to the
   //database
   $(".button__placeOrder").on("click", function () {
     let totalPrice = $(".checkout__sumDisplay--total").text().replace("$", '');
@@ -93,12 +93,14 @@ $(document).ready(function () {
           'estimated_time': `${totalTime}`,
           'orders': `${placedOrder}`
         },
-      })
-      .then((response) => {
-        console.log("Order placed.");
-        $(".checkout__list").children().remove();
-        $(".checkout__sumDisplay--total").text("$0.00");
-        $(".checkout__estimated-time").text("Estimated Time");
+        success: function(){
+          $(".checkout__list").children().remove();
+          $(".checkout__sumDisplay--total").text("$0.00");
+          $(".checkout__estimated-time").text("Estimated Time");
+        },
+        error: function(){
+          $("#login-section").css('visibility', 'visible');
+        }
       });
   });
 
@@ -120,7 +122,7 @@ $(document).ready(function () {
   });
 
 
-  //Checkout Item's Plus and Minus Button 
+  //Checkout Item's Plus and Minus Button
   $('.checkout__list').on('click', '.button__checkout--plus', function () {
     const quantityDisplay = $(this).siblings(".checkout__item--quantity--text");
 
@@ -199,7 +201,7 @@ $(document).ready(function () {
       // Display the result in the element with id="demo"
       current.siblings(".orders__body").children(".orders__timelapse").text(minutes + ":" + seconds);
 
-      // If the count down is finished, write some text 
+      // If the count down is finished, write some text
       if (distance < 0) {
         //clearInterval(x);
         current.siblings(".orders__body").children(".orders__timelapse").text(Math.abs(minutes + 1) + ":" + Math.abs(seconds).toLocaleString(undefined, {
