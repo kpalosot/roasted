@@ -108,17 +108,41 @@ $(document).ready(function () {
   $(".button__add").on("click", function () {
     const menu__container = $(this).parent().parent().parent(".menu__container");
 
-    const newCheckoutItem = {
-      id: menu__container.data("id"),
-      estimated_time: menu__container.data("esttime"),
-      name: menu__container.data("name"),
-      description: menu__container.data("description"),
-      type: menu__container.data("type"),
-      img_url: menu__container.data("img_url"),
-      price: menu__container.data("price")
-    };
+    let $checkListItems = $(".checkout__list").children();
+    let isAdded = false;
+    let $existingItem;
 
-    addToCheckout(newCheckoutItem);
+    // console.log($checkListItems);
+    for(var item of $checkListItems){
+      if ($(item).children(".checkout__item--name").text() === menu__container.data("name")){
+        isAdded = true;
+        existingItem = item;
+      }
+    }
+
+    if(isAdded){
+      let $quantityDisplay = $(existingItem).children(".checkout__item--quantity")
+                                 .children(".checkout__item--quantity--text");
+      let totalQuantity = Number($quantityDisplay.text());
+      $quantityDisplay.text(totalQuantity += 1);
+      updateEstTime();
+      updateTotalPrice();
+      updateItemPrice();
+    } else {
+      const newCheckoutItem = {
+        id: menu__container.data("id"),
+        estimated_time: menu__container.data("esttime"),
+        name: menu__container.data("name"),
+        description: menu__container.data("description"),
+        type: menu__container.data("type"),
+        img_url: menu__container.data("img_url"),
+        price: menu__container.data("price")
+      };
+
+      addToCheckout(newCheckoutItem);
+
+    }
+
   });
 
 
@@ -137,7 +161,9 @@ $(document).ready(function () {
   $('.checkout__list').on('click', '.button__checkout--minus', function () {
     const quantityDisplay = $(this).siblings(".checkout__item--quantity--text");
     let totalQuantity = Number(quantityDisplay.text());
-    if (totalQuantity > 0) {
+    if (totalQuantity === 1) {
+      $(this).parent().parent().remove();
+    } else {
       quantityDisplay.text(totalQuantity -= 1);
     }
     updateEstTime();

@@ -59,10 +59,10 @@ exports.seed = function(knex, Promise) {
 
   function insertUsers(){
     return knex('users').insert([
-      {name: 'user1@example.com', phone_num: '6476378072', type: 'customer'},
-      {name: 'user2@example.com', phone_num: '9055999119', type: 'customer'},
-      {name: 'user3@example.com', phone_num: '9052518621', type: 'customer'},
-      {name: 'owner@example.com', phone_num: '6476378072', type: 'owner'}
+      // {name: 'user1@example.com', phone_num: '6476378072', type: 'customer'},
+      // {name: 'user2@example.com', phone_num: '9055999119', type: 'customer'},
+      {name: 'neenus@roasted.com', phone_num: '9052518621', type: 'customer'},
+      {name: 'owner@roasted.com', phone_num: '6476378072', type: 'owner'}
       ]).returning('*');
   }
 
@@ -113,8 +113,15 @@ exports.seed = function(knex, Promise) {
     //   { customer_id: customers[customer5].id,
     //     created_at: orderTime5, estimated_time: 26}
     //   ]);
+    let thisCustomer;
+    for(var customer of customers){
+      if(customer.type === 'customer'){
+        thisCustomer = customer;
+      }
+    }
+    // console.log(thisCustomer);
     return knex('orders').insert({
-      customer_id: customers[0].id,
+      customer_id: thisCustomer.id,
       estimated_time: 2
     });
 
