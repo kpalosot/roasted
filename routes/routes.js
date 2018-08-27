@@ -42,25 +42,41 @@ module.exports = (knex) => {
   //Route:"/owner"
   //Description: Render orders.ejs
   router.get("/owner", (req, res) => {
-    knex
-      .select('*')
+    if(req.session.user_id){
+      knex
+      .select('type')
       .from('users')
-      .join('orders', 'orders.customer_id', '=', 'users.id')
-      .then(function (orders) {
+      .where('id', req.session.user_id)
+      .then(user => {
+        if(user[0].id === 'owner'){
+          knex
+            .select('*')
+            .from('users')
+            .join('orders', 'orders.customer_id', '=', 'users.id')
+            .then(function (orders) {
 
-        let templateVars = {
-          orders
-        };
-        res.render('orders', templateVars);
+              let templateVars = {
+                orders
+              };
+              res.render('orders', templateVars);
 
-      }).catch(function (error) {
-        console.error(error);
+            }).catch(function (error) {
+              console.error(error);
+            });
+          } else {
+            res.redirect('/');
+          }
       });
+    } else {
+      res.redirect('/');
+    }
+
   });
 
 
   router.post("/owner/addItem", (req, res) => {
     console.log("POST /roasted/owner/addItem");
+
     knex('menu').insert({
       name: req.body.name,
       description: req.body.description,
@@ -94,10 +110,12 @@ module.exports = (knex) => {
         if(user[0].type === 'owner'){
           res.render("new_item");
         } else{
-          res.sendStatus('403');
+          res.redirect('/');
         }
       })
       .catch(error => console.error("Error:", error));
+    } else {
+      res.redirect('/');
     }
 
   });
