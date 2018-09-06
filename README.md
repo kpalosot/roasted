@@ -1,29 +1,43 @@
-# Node Skeleton
+# Roasted (Food Pick-up Ordering)
+A food ordering experience for a single restaurant. Hungry clients of this fictitious restuarant can visit its website, select one or more dishes and place an order for pick-up. They will receive a notification when their order is ready.
 
-## Project Setup
+The restaurant and client both need to be notified since this app serves as an intermediary,
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+When an order isplaced the restaurant receives the order via SMS. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the webside updates for the client and also notifies them via SMS.
+
+
+## Final Product
+!["Welcome Page"](https://github.com/kpalosot/roasted/blob/master/img/welcome_page.png?raw=true)
+!["Welcome Page Location using Google Maps"](https://github.com/kpalosot/roasted/blob/master/img/welcome_page_location.png?raw=true)
+!["Customer can place an order"](https://github.com/kpalosot/roasted/blob/master/img/customer_menu_page.png?raw=true)
+!["Customer has to login to place an order(pop-up)"](https://github.com/kpalosot/roasted/blob/master/img/login_popup.png?raw=true)
+!["User has to register if user has no account with restaurant(pop-up)"](https://github.com/kpalosot/roasted/blob/master/img/register_popup.png?raw=true)
+!["Owner can see list of orders with countdown timer to the time before customer arrives"](https://github.com/kpalosot/roasted/blob/master/img/owner_list_order_page.png?raw=true)
+!["Owner can add new items to menu page and will be shown the new item summary"](https://github.com/kpalosot/roasted/blob/master/img/add_menu_item_page.png?raw=true)
+
+## Design Decisions
+- Order details (what was ordered and quantity) are not stored in the database as this is sent to both owner and customer upon placement.
+- No payment options available as payment happens in person.
+- Time estimate is stored in the database and calculated by item; Owner does not have to send an estimate for every order.
 
 ## Getting Started
-
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+- Install dependencies `npm i`.
+- Run `npm start`
+- Visit `http://localhost:8080/`
 
 ## Dependencies
 
 - Node 5.10.x or above
 - NPM 3.8.x or above
+- Body Parser: 1.15.2 or above
+- Cookie Session: 2.0.0 or above
+- EJS: 2.4.1 or above
+- Express: 4.13.4 or above
+- dotenv: 2.0.0 or above
+- JQuery: 3.3.1 or above
+- Knex: 0.11.10 or above
+- Knex-logger: 0.1.0 or above
+- Morgan: 1.7.0 or above
+- Postgres: 6.0.2 or above
+- Twilio: 3.19.1 or above (need to register for API SID and token)
+
