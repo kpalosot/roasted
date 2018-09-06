@@ -3,7 +3,7 @@ A food ordering experience for a single restaurant. Hungry clients of this ficti
 
 The restaurant and client both need to be notified since this app serves as an intermediary,
 
-When an order isplaced the restaurant receives the order via SMS. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the webside updates for the client and also notifies them via SMS.
+When an order is placed the restaurant receives the order via SMS. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the webside updates for the client and also notifies them via SMS.
 
 
 ## Final Product
