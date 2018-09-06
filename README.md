@@ -41,3 +41,8 @@ When an order isplaced the restaurant receives the order via SMS. The restaurant
 - Postgres: 6.0.2 or above
 - Twilio: 3.19.1 or above (need to register for API SID and token)
 
+## Collaborators
+- Sean Ye (https://github.com/danovity)
+- Neenus Gabriel (https://github.com/neenus)
+- Kyla Palos (https://github.com/kpalosot)
+
