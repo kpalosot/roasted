@@ -1,12 +1,15 @@
-# Roasted (Food Pick-up Ordering)
+# [Roasted (Food Pick-up Ordering)](https://thicc-roasted.herokuapp.com/)
+
+For live version, please visit https://thicc-roasted.herokuapp.com/
+
 A food ordering experience for a single restaurant. Hungry clients of this fictitious restuarant can visit its website, select one or more dishes and place an order for pick-up. They will receive a notification when their order is ready.
 
 The restaurant and client both need to be notified since this app serves as an intermediary,
 
 When an order is placed the restaurant receives the order via SMS. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the webside updates for the client and also notifies them via SMS.
 
-
 ## Final Product
+
 !["Welcome Page"](https://github.com/kpalosot/roasted/blob/master/img/welcome_page.png?raw=true)
 !["Welcome Page Location using Google Maps"](https://github.com/kpalosot/roasted/blob/master/img/welcome_page_location.png?raw=true)
 !["Customer can place an order"](https://github.com/kpalosot/roasted/blob/master/img/customer_menu_page.png?raw=true)
@@ -16,11 +19,13 @@ When an order is placed the restaurant receives the order via SMS. The restauran
 !["Owner can add new items to menu page and will be shown the new item summary"](https://github.com/kpalosot/roasted/blob/master/img/add_menu_item_page.png?raw=true)
 
 ## Design Decisions
+
 - Order details (what was ordered and quantity) are not stored in the database as this is sent to both owner and customer upon placement.
 - No payment options available as payment happens in person.
 - Time estimate is stored in the database and calculated by item; Owner does not have to send an estimate for every order.
 
 ## Getting Started
+
 - Install dependencies `npm i`.
 - Run `npm start`
 - Visit `http://localhost:8080/`
@@ -42,7 +47,7 @@ When an order is placed the restaurant receives the order via SMS. The restauran
 - Twilio: 3.19.1 or above (need to register for API SID and token)
 
 ## Collaborators
+
 - Sean Ye (https://github.com/danovity)
 - Neenus Gabriel (https://github.com/neenus)
 - Kyla Palos (https://github.com/kpalosot)
-
